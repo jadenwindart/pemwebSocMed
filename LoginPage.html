@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Responsive Login-Register Page</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/LoginPage.css"/>
+</head>
+<body>
+	<section class="register-sec-bg">
+		<div class="container">
+			<div class="row main">
+        <div class="col-md-5 col-sm-5 col-xs-12">
+					<div class="main-login main-center hvr-bounce-to-bottom">
+						<h2>Sign up</h2>
+						<form id="form1" class="" method="post" action="signup.php">
+							<div class="form-group">
+								<label for="name" class="cols-sm-2 control-label">Your Name</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="cols-sm-2 control-label">Password</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="password" id="password"  placeholder="Enter your password"/>
+									</div>
+								</div>
+							</div>
+							<br>
+							<div class="btn-block-login">
+								<a href="#" target="_blank"  class=" btn-reg">Register</a>
+							</div>
+						</form>
+					</div>
+				</div>
+      	<div class="col-md-2 col-sm-2 col-xs-12">
+					<!-- ini buat apa divnya weh wkwk -->
+        </div> 
+        <div class="col-md-5 col-sm-5 col-xs-12">
+					<div class="login-box hvr-bounce-to-top">
+            <div class="login-box-heading">
+              <p>Login</p>
+						</div>
+						<form id="form2" class="" method="post" action="login.php">
+              <div class="login-box-body">
+                <div class="form-group">
+									<label for="name" class="cols-sm-2 control-label">Your Email</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input type="email" class="form-control" name="name" placeholder="Enter your Email"/>
+										</div>
+									</div>
+								</div>
+							<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+							</div>
+						</form>
+            <a style="color:#fff; float:right;" href="#">Forgot Your Password?</a><br>
+						<div class="btn-block-login">
+            	<a href="#" class="btn-login">Login</a>
+            </div>
+          </div>
+        </div>
+			</div>
+    </div>
+	</section>
+</body>
+</html>
+
+<!--
+Perubahan 2/3/2019:
+- Beberapa script/link dihilangin (yg duplicate aja)
+- Semua Bootstrap jadi 3.4.0
+- jQuery jadi 3.3.1
+- Pembersihan tab dan codes
+- style di masukin ke LoginPage.css
+-->
