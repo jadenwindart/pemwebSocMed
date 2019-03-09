@@ -6,7 +6,7 @@
 
 
 <?php
-	include '/template/header.php';
+	include './php/template/header.php';
 ?>
 <!------ Include the above in your HEAD tag ---------->
 
@@ -264,14 +264,14 @@ span.input-group-addon i {
 						</div>
 
 						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Your Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								<label for="email" class="cols-sm-2 control-label">Password</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="password" id="password"  placeholder="Enter your password"/>
+									</div>
 								</div>
 							</div>
-						</div>
 						<br>
 						<div class="btn-block-login">
 							<a href="#" target="_blank"  class=" btn-reg">Register</a>
