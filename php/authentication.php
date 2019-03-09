@@ -29,7 +29,16 @@
             $email = mysqli_real_escape_string($email);
         }
         else if($_POST['action'] == 'register'){
-            
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $email = mysqli_real_escape_string($email);
+            $password = mysqli_real_escape_string($password);
+            if(count($password) < 8){
+                echo "Your password length must 8 or greater";
+                exit;
+            }
+            $salt = generateSalt();
+            $passHash = hash("sha2",$password);
         }
     }
 ?>
