@@ -268,7 +268,7 @@ span.input-group-addon i {
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="password" id="password"  placeholder="Enter your password"/>
+										<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your password"/>
 									</div>
 								</div>
 							</div>
@@ -287,7 +287,7 @@ span.input-group-addon i {
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="firstName" id="firstName"  placeholder="Enter your First Name"/>
+									<input type="text" class="form-control" name="firstName" id="firstName"  placeholder="Enter your First Name"/>
 								</div>
 							</div>
 						</div>
@@ -296,7 +296,7 @@ span.input-group-addon i {
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="lastName" id="lastName"  placeholder="Enter your Last Name"/>
+									<input type="text" class="form-control" name="lastName" id="lastName"  placeholder="Enter your Last Name"/>
 								</div>
 							</div>
 						</div>
