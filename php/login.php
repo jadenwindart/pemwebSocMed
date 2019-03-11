@@ -1,4 +1,17 @@
-html,body{
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Responsive Login-Register Page</title>
+
+
+<?php
+	include './php/template/header.php';
+?>
+<!------ Include the above in your HEAD tag ---------->
+
+ <style>
+ html,body{
 	background-image: url('http://c1.peakpx.com/wallpaper/97/360/24/light-lights-abstract-colors-color-wallpaper.jpg');
  }
 #playground-container {
@@ -227,3 +240,83 @@ span.input-group-addon i {
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
+ </style>
+
+</head>
+
+<body>
+	<section class="register-sec-bg">
+		<div class="container ">
+			<div class="row main">
+            <div class="col-md-5 col-sm-5 col-xs-12">
+				<div class="main-login main-center hvr-bounce-to-bottom">
+				<h2>Sign up</h2>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+								<label for="email" class="cols-sm-2 control-label">Password</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="password" id="password"  placeholder="Enter your password"/>
+									</div>
+								</div>
+							</div>
+						<br>
+						<div class="btn-block-login">
+							<a href="#" target="_blank"  class=" btn-reg">Register</a>
+						</div>
+					</form>
+				</div>
+			</div>
+            
+            <div class="col-md-2 col-sm-2 col-xs-12">
+            </div>
+            
+            <div class="col-md-5 col-sm-5 col-xs-12">
+				<div class="login-box hvr-bounce-to-top">
+                	<div class="login-box-heading">
+                    	<p>Login</p>
+                    </div>
+                    <div class="login-box-body">
+                    		<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="email" class="form-control" name="name" placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
+
+							<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="email" id="email1"  placeholder="Enter your Password"/>
+								</div>
+							</div>
+						</div>
+                        <a style="color:#fff; float:right;" href="#">Forgot Your Password?</a><br>
+						<div class="btn-block-login">
+                        	<a href="#" class="btn-login">Login</a>
+                        </div>
+                    </div>
+                </div>
+			</div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
