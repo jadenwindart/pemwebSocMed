@@ -21,7 +21,7 @@
         }
         return $currSalt;
     }
-
+    include 'database/dbconnect.php';
     if($_SERVER['REQUEST_METHOD'] == "POST" ){
         if($_POST['action'] == 'login'){
             $email = $_POST['email'];
@@ -31,9 +31,11 @@
         else if($_POST['action'] == 'register'){
             $email = $_POST['email'];
             $password = $_POST['password'];
-            $email = mysqli_real_escape_string($email);
-            $password = mysqli_real_escape_string($password);
-            if(count($password) < 8){
+            $firstName = $_POST['firstName'];
+            $lastName = $_POST['lastName'];
+            $email = mysqli_real_escape_string($db,$email);
+            $password = mysqli_real_escape_string($db,$password);
+            if(strlen($password) < 8){
                 echo "Your password length must 8 or greater";
                 exit;
             }
