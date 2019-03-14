@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 09, 2019 at 03:53 PM
--- Server version: 5.7.19
--- PHP Version: 7.1.20
+-- Host: localhost
+-- Generation Time: Mar 14, 2019 at 02:07 PM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `comment` (
   `post_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `comment` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -41,9 +41,9 @@ CREATE TABLE `comment` (
 --
 
 CREATE TABLE `login` (
-  `id` int(11) NOT NULL,
-  `username` char(16) NOT NULL,
-  `password` char(16) NOT NULL
+  `username` varchar(50) NOT NULL,
+  `password` char(16) NOT NULL,
+  `salt` varbinary(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -54,7 +54,7 @@ CREATE TABLE `login` (
 
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `post_content` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -65,7 +65,7 @@ CREATE TABLE `post` (
 --
 
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `description` varchar(200) NOT NULL,
@@ -81,37 +81,30 @@ CREATE TABLE `user` (
 --
 ALTER TABLE `comment`
   ADD KEY `post_id` (`post_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `username_comment` (`username`);
 
 --
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`username`) USING BTREE;
 
 --
 -- Indexes for table `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`post_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `username_post` (`username`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `post`
@@ -128,19 +121,19 @@ ALTER TABLE `post`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `username_comment` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
 
 --
 -- Constraints for table `login`
 --
 ALTER TABLE `login`
-  ADD CONSTRAINT `login_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `username_login` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
 
 --
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `username_post` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

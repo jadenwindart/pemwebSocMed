@@ -254,11 +254,11 @@ span.input-group-addon i {
 					<form class="" method="post" action="#" id="register">
 						
 						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Email</label>
+							<label for="username" class="cols-sm-2 control-label">Username</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
 								</div>
 							</div>
 						</div>
@@ -314,15 +314,16 @@ span.input-group-addon i {
             <div class="col-md-5 col-sm-5 col-xs-12">
 				<div class="login-box hvr-bounce-to-top">
                 	<div class="login-box-heading">
-                    	<p>Login</p>
-                    </div>
+                    	<h2>Login</h2>
+					</div>
+					<form action="" method="post" id="login">
                     <div class="login-box-body">
                     		<div class="form-group">
-							<label for="emailLogin" class="cols-sm-2 control-label">Your Email</label>
+							<label for="usernameLogin" class="cols-sm-2 control-label">Your Username</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="email" class="form-control" name="emailLogin" placeholder="Enter your Email"/>
+									<input type="text" class="form-control" id="usernameLogin" name="usernameLogin" placeholder="Enter your Username"/>
 								</div>
 							</div>
 						</div>
@@ -339,7 +340,8 @@ span.input-group-addon i {
 						<div class="btn-block-login">
                         	<input type="submit" value="Login" class="btn-login">
                         </div>
-                    </div>
+					</div>
+					</form>
                 </div>
 			</div>
         </div>
