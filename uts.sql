@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 09, 2019 at 03:53 PM
+-- Generation Time: Mar 14, 2019 at 03:45 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.20
 
@@ -29,10 +29,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `comment` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `post_id`, `user_id`, `comment`) VALUES
+(1, 1, 4, 'testing'),
+(2, 1, 4, 'testing1'),
+(3, 1, 4, 'testing2'),
+(4, 1, 4, 'testing3'),
+(5, 1, 4, 'testing100'),
+(6, 2, 4, 'fucuk'),
+(7, 2, 4, 'daun'),
+(8, 2, 3, 'teh'),
+(9, 2, 2, 'hijau');
 
 -- --------------------------------------------------------
 
@@ -55,8 +71,16 @@ CREATE TABLE `login` (
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `post_content` varchar(200) NOT NULL
+  `post_content` varchar(5000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`post_id`, `user_id`, `post_content`) VALUES
+(1, 1, 'Indonesia Raya adalah lagu kebangsaan Republik Indonesia. Lagu ini pertama kali diperkenalkan oleh komponisnya, Wage Rudolf Soepratman, pada tanggal 28 Oktober 1928 pada saat Kongres Pemuda II di Batavia. Lagu ini menandakan kelahiran pergerakan nasionalisme seluruh nusantara di Indonesia yang mendukung ide satu \"Indonesia\" sebagai penerus Hindia Belanda, daripada dipecah menjadi beberapa koloni.'),
+(2, 1, 'Setiap orang yang hadir pada saat Lagu Kebangsaan diperdengarkan dan/atau dinyanyikan, wajib berdiri tegak dengan sikap hormat.[1] Anggota Militer berseragam lazimnya melakukan penghormatan dengan mengangkat tangan kanan pada saat lagu kebangsaan diperdengarkan/dinyanyikan.');
 
 -- --------------------------------------------------------
 
@@ -73,6 +97,16 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `description`, `profile_picture`) VALUES
+(1, 'John', 'Doe', 'No description so far', 'image/no_image.png'),
+(2, 'Budi', 'Santoso', 'Tidak ada deskripsi', ''),
+(3, 'Eko', 'Wijaya', 'Deskripsi tidak ada', ''),
+(4, 'Joko', 'Wijaya', 'A B C D E F G H I J K L M N O P Q R S', '');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -80,6 +114,7 @@ CREATE TABLE `user` (
 -- Indexes for table `comment`
 --
 ALTER TABLE `comment`
+  ADD PRIMARY KEY (`comment_id`),
   ADD KEY `post_id` (`post_id`),
   ADD KEY `user_id` (`user_id`);
 
@@ -108,6 +143,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
@@ -117,7 +158,13 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
