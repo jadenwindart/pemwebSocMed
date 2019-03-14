@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2019 at 02:07 PM
+-- Generation Time: Mar 14, 2019 at 03:41 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -42,9 +42,16 @@ CREATE TABLE `comment` (
 
 CREATE TABLE `login` (
   `username` varchar(50) NOT NULL,
-  `password` char(16) NOT NULL,
+  `password` char(64) NOT NULL,
   `salt` varbinary(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`username`, `password`, `salt`) VALUES
+('Andrew', '4ce30ed6728599e8f242baa4779c7ffac842cbe379f1e35bfc9253bc191f6874', 0x4e8f94d93ccdad38);
 
 -- --------------------------------------------------------
 
@@ -68,9 +75,16 @@ CREATE TABLE `user` (
   `username` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
-  `description` varchar(200) NOT NULL,
-  `profile_picture` varchar(200) NOT NULL
+  `description` varchar(200) DEFAULT NULL,
+  `profile_picture` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`username`, `first_name`, `last_name`, `description`, `profile_picture`) VALUES
+('Andrew', 'Andrew', 'Tjanadi', NULL, NULL);
 
 --
 -- Indexes for dumped tables
