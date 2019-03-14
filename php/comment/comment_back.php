@@ -1,5 +1,6 @@
 <?php
     class Comment {
+        private $comment_id;
         private $username;
         private $comment;
 
@@ -28,14 +29,15 @@
     $visiting_user_id = 2;
 
 
-    //Init DB
-    $hostname = 'localhost';
+    //Database
+    include "../database/dbconnect.php";
+    /*$hostname = 'localhost';
     $username = 'root';
     $password = '';
     $dbname = 'uts';
     
-    $db = new mysqli($hostname, $username, $password, $dbname);
-
+    $db = new mysqli($hostname, $username, $password, $dbname);*/
+    
 
     //Get Post
     $user_id = 1;
