@@ -15,12 +15,12 @@
         <div class='container'>
             <div class='row'>
                 <div class='col-sm-1'>
-                    <img class='img-rounded img-responsive' style='width:100%' src="../../image/no_image.png">
+                    <img class='img-rounded' style='width:100%' src="../../image/no_image.png">
                 </div>
                 <div class='col-sm-11'>
                     <!--<h5>John Doe</h5>-->
                     <!--<p>Indonesia Raya adalah lagu kebangsaan Republik Indonesia. Lagu ini pertama kali diperkenalkan oleh komponisnya, Wage Rudolf Soepratman, pada tanggal 28 Oktober 1928 pada saat Kongres Pemuda II di Batavia. Lagu ini menandakan kelahiran pergerakan nasionalisme seluruh nusantara di Indonesia yang mendukung ide satu "Indonesia" sebagai penerus Hindia Belanda, daripada dipecah menjadi beberapa koloni.</p>-->
-                    <h5><?php echo $username; ?></h5>
+                    <h3><b><?php echo $name; ?></b></h3>
                     <p><?php echo $post_content; ?></p>
                 </div>
             </div>
@@ -29,36 +29,42 @@
                     <div class='row'>
                         <p>Replies</p>
                     </div>
-                    <!--<div class='row small'>
+                    <!-- <div class='row'>
                         <div class='col-sm-1'>
-                            <img class='img-rounded img-responsive' style='width:100%' src="image/no_image.png">
+                            <img class='img-rounded' style='width:100%' src="../../image/no_image.png">
                         </div>
-                        <div class='col-sm-11'>
-                            <h6>John Doe</h5>
-                            <p>Indonesia Raya adalah lagu kebangsaan Republik Indonesia. Lagu ini pertama kali diperkenalkan oleh komponisnya, Wage Rudolf Soepratman, pada tanggal 28 Oktober 1928 pada saat Kongres Pemuda II di Batavia. Lagu ini menandakan kelahiran pergerakan nasionalisme seluruh nusantara di Indonesia yang mendukung ide satu "Indonesia" sebagai penerus Hindia Belanda, daripada dipecah menjadi beberapa koloni.</p>
+                        <div class='col-sm-10'>
+                            <h3><small><b>Jane Doe</b></small></h3>
+                            <p><small>Bacot... Anj*ng</small></p>
                         </div>
-                    </div>-->
+                        <div class='col-sm-1'>
+                                <form action='#' method='post'>
+                                <button type='submit' name='button' value='".$comment[$i]->getId()."' class='btn fa fa-close' onClick='return confirm("Are you sure you want to delete?")'></button>
+                                </form>
+                        </div>
+                    </div> -->
+   
                     <?php
                         if(isset($comment)) {
                             for($i = 0; $i < sizeof($comment); $i++) {
-                                echo "<div class='row small'>";
+                                echo "<div class='row'>";
                                 echo    "<div class='col-sm-1'>";
                                 echo        "<img class='img-rounded img-responsive' style='width:100%' src='../../image/no_image.png'>";
                                 echo    "</div>";
                                 echo    "<div class='col-sm-10'>";
-                                echo        "<h6>".$comment[$i]->getUsername()."</h5>";
-                                echo        "<p>".$comment[$i]->getComment()."</p>";
+                                echo        "<h3 style='font-size:120%'><b>".$comment[$i]->getUsername()."</b></h3>";
+                                echo        "<p style='font-size:120%'>".$comment[$i]->getComment()."</p>";
                                 echo    "</div>";
                                 echo    "<div class='col-sm-1'>";
                                 echo        "<form action='comment_delete.php' method='post'>";
-                                echo            "<button type='submit' class='fa fa-close'></button>";
+                                echo            "<button type='submit' name='button' value='".$comment[$i]->getId()."' class='btn fa fa-close' onClick='return confirm(\"Are you sure you want to delete?\")'></button>";
                                 echo        "</form>";
                                 echo    "</div>";
                                 echo "</div>";
                             }
                         }
                     ?>
-                    
+    
                     <form action='comment_submit.php' method='post'>
                         <div class='form-group'>
                             <label for='comment'>Add comment</label>

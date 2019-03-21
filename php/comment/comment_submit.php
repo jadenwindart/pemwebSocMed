@@ -2,19 +2,20 @@
     if(isset($_POST)) {
         session_start();
 
-        $hostname = 'localhost';
-        $username = 'root';
-        $password = '';
-        $dbname = 'uts';
+        include "../database/dbconnect.php";
+        // $hostname = 'localhost';
+        // $username = 'root';
+        // $password = '';
+        // $dbname = 'uts';
 
-        $db = new mysqli($hostname, $username, $password, $dbname);
+        // $db = new mysqli($hostname, $username, $password, $dbname);
 
-        $user_id = $_SESSION['user_id']; //var_dump($user_id);
-        $post_id = $_SESSION['post_id']; //var_dump($post_id);
-        $comment = $_POST['comment']; //var_dump($comment);
-        $query = "INSERT INTO comment(post_id, user_id, comment) VALUES ({$post_id}, {$user_id}, '{$comment}');";
-
-        $db->query($query);
+        $socmed_username = $_SESSION['username']; //var_dump($user_id);
+        $socmed_post_id = $_SESSION['post_id']; //var_dump($post_id);
+        $comment = strip_tags($_POST['comment']); //var_dump($comment);
+        $query = $db->prepare("INSERT INTO comment(post_id, username, comment) VALUES (?, ?, ?);");
+        $query->bind_param('iss', $socmed_post_id, $socmed_username, $comment);
+        $query->execute();
 
         $db->close();
     }
