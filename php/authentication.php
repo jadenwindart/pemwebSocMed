@@ -49,7 +49,6 @@
                 if($passHash === $passInput){
                     echo "Success Login";
                     $_SESSION['username'] = $username;
-                    header("Location: ../index.php");
                     exit;
                 }
             }

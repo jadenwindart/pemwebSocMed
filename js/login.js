@@ -14,6 +14,7 @@ $('#register').submit(function(event){
             "lastName=" + lastName;
     $.post("php/authentication.php",data,function(response){
         alert(response);
+        location.reload();
     });
 })
 
@@ -26,5 +27,6 @@ $('#login').submit(function(event){
             "password="+password ;
     $.post("php/authentication.php",data,function(response){
         alert(response);
+        location.reload();
     })
 })
