@@ -40,11 +40,6 @@ CREATE TABLE `comment` (
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`comment_id`, `post_id`, `username`, `comment`) VALUES
-(1, 1, 'budi_santoso', 'Bacot'),
-(2, 1, 'jane_doe', 'More bacot'),
-(3, 1, 'budi_santoso', 'Anjeng'),
-(5, 1, 'budi_santoso', 'Diem bangsat');
 
 -- --------------------------------------------------------
 
@@ -62,8 +57,6 @@ CREATE TABLE `login` (
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`username`, `password`, `salt`) VALUES
-('andrew', '4ce30ed6728599e8f242baa4779c7ffac842cbe379f1e35bfc9253bc191f6874', 0x4e8f94d93ccdad38);
 
 
 -- --------------------------------------------------------
@@ -83,9 +76,7 @@ CREATE TABLE `post` (
 -- Dumping data for table `post`
 --
 
-INSERT INTO `post` (`post_id`, `username`, `post_content`) VALUES
-(1, 'john_doe', 'Indonesia Raya adalah lagu kebangsaan Republik Indonesia. Lagu ini pertama kali diperkenalkan oleh komponisnya, Wage Rudolf Soepratman, pada tanggal 28 Oktober 1928 pada saat Kongres Pemuda II di Batavia. Lagu ini menandakan kelahiran pergerakan nasionalisme seluruh nusantara di Indonesia yang mendukung ide satu \"Indonesia\" sebagai penerus Hindia Belanda, daripada dipecah menjadi beberapa koloni.'),
-(2, 'jane_doe', 'Stanza pertama dari Indonesia Raya dipilih sebagai lagu kebangsaan ketika Indonesia memproklamasikan kemerdekaannya pada tanggal 17 Agustus 1945.');
+
 
 -- --------------------------------------------------------
 
@@ -105,8 +96,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`username`, `first_name`, `last_name`, `description`, `profile_picture`) VALUES
-('Andrew', 'Andrew', 'Tjanadi', NULL, NULL);
+
 
 
 --

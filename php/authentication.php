@@ -1,4 +1,5 @@
 <?php
+    session_start();
     function generateRandChar(){
         $char = array_merge(range('a','z'),range('A','Z'));
         return $char[rand(0,count($char)-1)];
@@ -47,10 +48,12 @@
                 $passInput = hash("sha256",$password.$salt);
                 if($passHash === $passInput){
                     echo "Success Login";
+                    $_SESSION['username'] = $username;
                     exit;
                 }
             }
             echo "Failed Login";
+            session_destroy();
         }
         else if($_POST['action'] == 'register'){
             $username = $_POST['username'];
@@ -86,6 +89,7 @@
                 die($db->error);
             }
             $prepQuery->close();
+            session_destroy();
         }
     }
 ?>
