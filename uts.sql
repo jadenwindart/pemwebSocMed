@@ -1,11 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
 -- Generation Time: Mar 21, 2019 at 03:15 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.20
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,6 +65,7 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`username`, `password`, `salt`) VALUES
 ('andrew', '4ce30ed6728599e8f242baa4779c7ffac842cbe379f1e35bfc9253bc191f6874', 0x4e8f94d93ccdad38);
 
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +76,7 @@ CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `post_content` varchar(2000) NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -103,10 +106,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `first_name`, `last_name`, `description`, `profile_picture`) VALUES
-('andrew', 'Andrew', 'Tjanadi', NULL, NULL),
-('budi_santoso', 'Budi', 'Santoso', 'Bernama Budi', NULL),
-('jane_doe', 'Jane', 'Doe', 'Nothing', NULL),
-('john_doe', 'John', 'Doe', 'Tidak ada', NULL);
+('Andrew', 'Andrew', 'Tjanadi', NULL, NULL);
+
 
 --
 -- Indexes for dumped tables
@@ -144,12 +145,14 @@ ALTER TABLE `user`
 --
 
 --
+
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
