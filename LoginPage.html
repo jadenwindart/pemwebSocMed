@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Responsive Login-Register Page</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="js/jquery-3.1.1.slim.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+	<link href="css/LoginPage.css" rel="stylesheet"/> <!-- css nya perlu rel="stylesheet" jgn lupa -->
+</head>
+<body>
+	<section class="register-sec-bg">
+		<div class="container ">
+			<div class="row main">
+        <div class="col-md-5 col-sm-5 col-xs-12">
+					<div class="main-login main-center hvr-bounce-to-bottom">
+						<h2>Sign up</h2>
+						<form class="" method="post" action="#">
+							<div class="form-group">
+                <div class="cols-sm-10">
+                <label for="firstname" class="cols-sm-2 control-label">First Name</label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input class="form-control" name="firstname" placeholder="First Name" type="text" required autofocus />
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="lastname" class="cols-sm-2 control-label">Last Name</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="lastname" id="email"  placeholder="Last Name"/>
+									</div>
+								</div>
+							</div>
+            	<div class="form-group">
+								<label for="username" class="cols-sm-2 control-label">Username</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="username" id="username"  placeholder="Username"/>
+									</div>
+								</div>
+							</div>
+              <div class="form-group">
+								<label for="password" class="cols-sm-2 control-label">Password</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
+										<input type="password" class="form-control" name="password" id="password"  placeholder="Password"/>
+									</div>
+								</div>
+							</div>
+              <div class="form-group">
+                <label>Birth Date</label>
+                <div class="row">
+                  <div class="col-xs-4 col-md-4">
+                    <select name="month" class="form-control" onChange="changeDate(this.options[selectedIndex].value);">
+											<option value="na">Month</option>
+											<option value="1">January</option>
+											<option value="2">February</option>
+											<option value="3">March</option>
+											<option value="4">April</option>
+											<option value="5">May</option>
+											<option value="6">June</option>
+											<option value="7">July</option>
+											<option value="8">August</option>
+											<option value="9">September</option>
+											<option value="10">October</option>
+											<option value="11">November</option>
+											<option value="12">December</option>
+                    </select>
+                  </div>
+									<div class="col-xs-4 col-md-4">
+										<select name="day" id="day" class="form-control">
+											<option value="na">Day</option>
+										</select>
+                  </div>
+									<div class="col-xs-4 col-md-4">
+											<select name="year" id="year" class="form-control">
+													<option value="na">Year</option>
+											</select>
+									</div> 
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="radio-inline">
+									<input type="radio" name="sex" id="inlineCheckbox1" value="male"/>Male
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="sex" id="inlineCheckbox2" value="female" />Female
+								</label>
+							</div>
+							<br>
+							<div class="btn-block-login">
+								<a href="#" target="_blank"  class=" btn-reg">Register</a>
+							</div>
+						</form>
+					</div>
+				</div>
+        <div class="col-md-2 col-sm-2 col-xs-12">
+        </div>
+        <div class="col-md-5 col-sm-5 col-xs-12">
+					<div class="login-box hvr-bounce-to-top">
+            <div class="login-box-heading">
+              <p>Login</p>
+            </div>
+            <div class="login-box-body">
+              <div class="form-group">
+								<label for="name" class="cols-sm-2 control-label">Your Username</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="name" placeholder="Enter your Username"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="cols-sm-2 control-label">Your Password</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
+										<input type="password" class="form-control" name="password" id="password1"  placeholder="Enter your Password"/>
+									</div>
+								</div>
+							</div>
+            	<a style="color:#fff; float:right;" href="#">Forgot Your Password?</a><br>
+							<div class="btn-block-login">
+								<a href="#" class="btn-login">Login</a>
+							</div>
+  					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<script language="JavaScript" type="text/javascript">
+function changeDate(i){
+var e = document.getElementById('day');
+while(e.length>0)
+    e.remove(e.length-1);
+var j=-1;
+if(i=="na")
+    k=0;
+else if(i==2)
+    k=28;
+else if(i==4||i==6||i==9||i==11)
+    k=30;
+else
+    k=31;
+while(j++<k){
+    var s=document.createElement('option');
+    var e=document.getElementById('day');
+    if(j==0){
+        s.text="Day";
+        s.value="na";
+        try{
+        e.add(s,null);}
+        catch(ex){
+        e.add(s);}
+    }
+    else{
+        s.text=j;
+        s.value=j;
+        try{
+        e.add(s,null);}
+        catch(ex){
+            e.add(s);
+            }
+        }
+    }
+}
+y = 2019;
+while (y-->1940){
+    var s = document.createElement('option');
+    var e = document.getElementById('year');
+    s.text=y;
+    s.value=y;
+    try{
+        e.add(s,null);
+    }
+    catch(ex){
+        e.add(s);
+    }
+}
+</script>
+</body>
+</html>
