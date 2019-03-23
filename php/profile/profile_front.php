@@ -15,7 +15,7 @@
 Minor Problem: 
   - Icon glyphicon ga ke load
 -->
-<?php include './php/template/header.php'; ?>
+<?php include "./php/template/header.php"; ?>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
@@ -67,7 +67,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-          <h4 class="w3-center">My Profile</h4>
+          <!-- <h4 class="w3-center">My Profile</h4> -->
+          <h4 class="w3-center"><?php echo $user->getName(); ?></h4>
           <p class="w3-center"><img src="../image/no_image.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
           <hr>
           <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
@@ -159,7 +160,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <h2 class="page-header"></h2>
             <section class="comment-list">
               <!-- First Comment -->
-              <article class="row">
+              <!-- <article class="row">
                 <div class="col-md-2 col-sm-2 hidden-xs">
                   <figure class="thumbnail">
                     <img class="img-responsive" src="https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg"/>
@@ -182,18 +183,49 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                     </div>
                   </div>
                 </div>
-              </article>
+              </article> -->
+
+              <?php
+              if(isset($posts)) {
+                for($i = 0; $i < sizeof($posts); $i++) {
+                  echo "<article class='row'>";
+                    echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
+                      echo "<figure class='thumbnail'>";
+                        echo "<img class='img-responsive' src='https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg'/>";
+                        echo "<figcaption class='text-center'>".$posts[$i]->getName()."</figcaption>";
+                      echo "</figure>";
+                    echo "</div>";
+                    echo "<div class='col-md-10 col-sm-10'>";
+                      echo "<div class='panel panel-default arrow left'>";
+                        echo "<div class='panel-body'>";
+                          echo "<header class='text-left'>";
+                            echo "<div class='comment-user'><h4><b>".$posts[$i]->getName()."</b></h4></div>";
+                            echo "<time class='comment-date' datetime='16-12-2014 01:05'><i class='fa fa-clock-o'></i> Dec 16, 2014</time>";
+                            echo "</header>";
+                            echo "<br>";
+                          echo "<div class='comment-post'>";
+                            echo "<p>";
+                              echo $posts[$i]->getPostContent();
+                            echo "</p>";
+                          echo "</div>";
+                          echo "<p class='text-right'><a href='#' class='btn btn-default btn-sm'><i class='fa fa-reply'></i> reply</a></p>";
+                        echo "</div>";
+                      echo "</div>";
+                    echo "</div>";
+                  echo "</article>";
+                }
+              }
+              ?>
             </section>
           </div>
         </div>
       </div>
       
-      <div class="container">
+      <!-- <div class="container">
           <div class="row">
             <div class="col-md-8">
               <h2 class="page-header"></h2>
               <section class="comment-list">
-                <!-- First Comment -->
                 <article class="row">
                   <div class="col-md-2 col-sm-2 hidden-xs">
                     <figure class="thumbnail">
@@ -221,7 +253,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               </section>
             </div>
           </div>
-        </div>
+        </div> -->
       
     <!-- End Middle Column -->
     </div>

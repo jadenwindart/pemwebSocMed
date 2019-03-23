@@ -15,7 +15,10 @@
 Minor Problem: 
   - Icon glyphicon ga ke load
 -->
-<?php include '../template/header.php'; ?>
+<?php 
+  // include './php/template/header.php';
+  include '../template/header.php';  
+?>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
