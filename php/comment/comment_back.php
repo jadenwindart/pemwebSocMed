@@ -40,16 +40,10 @@
 
     //Database
     include "../database/dbconnect.php";
-    // $hostname = 'localhost';
-    // $username = 'root';
-    // $password = '';
-    // $dbname = 'uts';
-    
-    // $db = new mysqli($hostname, $username, $password, $dbname);
     
 
     //Get Post
-    $socmed_username = "budi_santoso";
+    $socmed_username = "john_doe";
     $socmed_post_id = 1;
     $col = 'u.first_name, u.last_name, post_content';
     $table1 = 'post AS p'; $table2 = 'user AS u';
@@ -79,22 +73,8 @@
     }
     //var_dump($comment);
 
-
-    // //Get User Name
-    // $col = 'first_name, last_name';
-    // $table = 'user';
-    // $query = 'SELECT '.$col.' FROM '.$table.' WHERE user_id='.$user_id.';';
-    // $result = $db->query($query);
-    // $row_user = $result->fetch_assoc(); //var_dump($row_user);
-
-    // $name = $row_user['first_name'].' '.$row_user['last_name'];
-
-
-    session_start();
-    $_SESSION['post_id'] = $socmed_post_id;
-    $_SESSION['username'] = $visiting_username;
-
     $db->close();
 
+    
     include 'comment_front.php';
 ?>

@@ -4,6 +4,6 @@
         include 'php/login.php';
     }
     else{
-        include 'php/profile.php';
+        include 'php/profile/profile_back.php';
     }
 ?>
