@@ -60,18 +60,31 @@
     }
 
     class Post {
-        private $post_id, $name, $post_content;
+        private $post_id, $username, $name, $post_content, $post_time;
 
-        public function __construct($post_id, $name, $post_content) {
+        public function __construct($post_id, $username, $name, $post_content, $post_time) {
             $this->post_id = $post_id;
+            $this->username = $username;
             $this->name = $name;
             $this->post_content = $post_content;
+            $this->post_time = $post_time;
         }
+
+        // public function __construct($post_id, $username, $name, $post_content) {
+        //     $this->post_id = $post_id;
+        //     $this->username = $username;
+        //     $this->name = $name;
+        //     $this->post_content = $post_content;
+        // }
 
         public function __destruct() {}
 
         public function getPostId() {
             return $this->post_id;
+        }
+
+        public function getUsername() {
+            return $this->username;
         }
 
         public function getName() {
@@ -82,16 +95,28 @@
             return $this->post_content;
         }
 
+        public function getPostTime() {
+            return $this->post_time;
+        }
+
         public function setPostId($post_id) {
             $this->post_id = $post_id;
         }
 
-        public function setUsername($name) {
+        public function setUsername($username) {
+            $this->username = $username;
+        }
+
+        public function setName($name) {
             $this->name = $name;
         }
 
         public function setPostContent($post_content) {
             $this->post_content = $post_content;
+        }
+
+        public function setPostTime($post_time) {
+            $this->post_time = $post_time;
         }
     }
 
@@ -115,18 +140,18 @@
 
 
     //Get Posts
-    $col = "p.post_id, u.first_name, u.last_name, p.post_content";
+    $col = "p.post_id, u.username, u.first_name, u.last_name, p.post_content, TIMESTAMPDIFF(minute, p.post_date, NOW()) AS time_diff";
     $table1 = "post AS p"; $table2 = "user AS u";
-    $query = "SELECT {$col} FROM {$table1} JOIN {$table2} WHERE p.username=u.username ORDER BY 1;";
+    $query = "SELECT {$col} FROM {$table1} JOIN {$table2} WHERE p.username=u.username ORDER BY 1 DESC;";
 
     $result = $db->query($query);
 
     while($row_post = $result->fetch_assoc()) {
         $temp = $row_post['first_name']." ".$row_post['last_name'];
 
-        $posts[] = new Post($row_post['post_id'], $temp, $row_post['post_content']);
+        $post[] = new Post($row_post['post_id'], $row_post['username'], $temp, $row_post['post_content'], $row_post['time_diff']);
     }
-    //var_dump($posts);
+    // var_dump($post);
 
     $db->close();
 

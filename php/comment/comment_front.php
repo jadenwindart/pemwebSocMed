@@ -87,7 +87,27 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                       <header class="text-left">
                         <!-- <div class="comment-user"><p style='font-size:200%'><b>Hohochin</b></p></div> -->
                         <div class="comment-user"><p style='font-size:200%'><b><?php echo $name; ?></b></p></div>
-                        <p><i class="fa fa-clock-o"></i> Dec 16, 2014</p>
+                        <p><i class="fa fa-clock-o"></i> 
+                          <?php
+                            $time = (int)$post_time;      
+                                      
+                            if($time < 1) {
+                              echo "Less than a minute ago";
+                            }
+                            else if($time > 1 && $time < 60) {
+                              echo $time;
+                              echo " minutes ago";
+                            }
+                            else if($time >= 60 && $time < 1440) {
+                              echo round($time / 60);
+                              echo " hour ago";
+                            }
+                            else if($time >= 1440) {
+                              echo round($time / 1440);
+                              echo " days ago";
+                          }
+                          ?>
+                        </p>
                       </header>
                       <br>
                       <div class="comment-post">
@@ -165,7 +185,25 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                                       echo "</form>";
                                   echo "</div>";
                                 echo "</div>";
-                                echo "<p style='font-size:90%'><i class='fa fa-clock-o'></i> Dec 16, 2014</p>";
+                                echo "<p style='font-size:90%'><i class='fa fa-clock-o'></i> ";
+                                  $comment_time = (int)$comment[$i]->getCommentTime();  
+                                  
+                                  if($comment_time < 1) {
+                                    echo "Less than a minute ago";
+                                  }
+                                  else if($comment_time > 1 && $comment_time < 60) {
+                                    echo $comment_time;
+                                    echo " minutes ago";
+                                  }
+                                  else if($comment_time >= 60 && $comment_time < 1440) {
+                                    echo round($comment_time / 60);
+                                    echo " hour ago";
+                                  }
+                                  else if($comment_time >= 1440) {
+                                    echo round($comment_time / 1440);
+                                    echo " days ago";
+                                  }
+                                echo "</p>";
                               echo "</header>";
                               echo "<br>";
                               echo "<div class='comment-post'>";

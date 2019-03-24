@@ -147,8 +147,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">How's your feeling?</h6>
-              <p contenteditable="true" class="w3-border w3-padding"></p>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+              <!-- <p contenteditable="true" class="w3-border w3-padding"></p> -->
+              <form action="./php/profile/profile_post.php" method="post">
+                <input type="text" name="post_content" class="w3-input w3-border w3-padding"><br>
+                <input type="hidden" name="username" <?php echo "value='".$user->getUsername()."'"; ?>>
+                <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
+              </form>
             </div>
           </div>
         </div>
@@ -186,26 +190,57 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               </article> -->
 
               <?php
-              if(isset($posts)) {
-                for($i = 0; $i < sizeof($posts); $i++) {
+              if(isset($post)) {
+                for($i = 0; $i < sizeof($post); $i++) {
                   echo "<article class='row'>";
                     echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
                       echo "<figure class='thumbnail'>";
                         echo "<img class='img-responsive' src='https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg'/>";
-                        echo "<figcaption class='text-center'>".$posts[$i]->getName()."</figcaption>";
+                        echo "<figcaption class='text-center'>".$post[$i]->getName()."</figcaption>";
                       echo "</figure>";
                     echo "</div>";
                     echo "<div class='col-md-10 col-sm-10'>";
                       echo "<div class='panel panel-default arrow left'>";
                         echo "<div class='panel-body'>";
                           echo "<header class='text-left'>";
-                            echo "<div class='comment-user'><h4><b>".$posts[$i]->getName()."</b></h4></div>";
-                            echo "<time class='comment-date' datetime='16-12-2014 01:05'><i class='fa fa-clock-o'></i> Dec 16, 2014</time>";
+                            echo "<div class='row'>";
+                              echo "<div class='col-md-10 col-sm-10 comment-user'>";
+                                echo "<h4><b>".$post[$i]->getName()."</b></h4>";
+                              echo "</div>";
+                              echo "<div class='col-md-2 col-sm-2'>";
+                                      if($post[$i]->getUsername() == $user->getUsername()) {
+                                        echo "<form action='./php/profile/profile_post_delete.php' method='post'>";
+                                          echo "<p class='text-right'>";
+                                            echo "<button type='submit' name='button' value='".$post[$i]->getPostId()."' class='w3-btn fa fa-close' onClick='return confirm(\"Are you sure you want to delete?\")'></button>";
+                                          echo "</p>";
+                                        echo "</form>";
+                                      }
+                              echo "</div>";
+                            echo "</div>";
+                            echo "<p class='comment-date'><i class='fa fa-clock-o'></i> ";
+                                    $post_time = (int)$post[$i]->getPostTime();      
+                                    // echo $post_time;
+                                    if($post_time < 1) {
+                                      echo "Less than a minute ago";
+                                    }
+                                    else if($post_time > 1 && $post_time < 60) {
+                                      echo $post_time;
+                                      echo " minutes ago";
+                                    }
+                                    else if($post_time >= 60 && $post_time < 1440) {
+                                      echo round($post_time / 60);
+                                      echo " hour ago";
+                                    }
+                                    else if($post_time >= 1440) {
+                                      echo round($post_time / 1440);
+                                      echo " days ago";
+                                    }
+                            echo "</p>";
                             echo "</header>";
                             echo "<br>";
                           echo "<div class='comment-post'>";
                             echo "<p>";
-                              echo $posts[$i]->getPostContent();
+                              echo $post[$i]->getPostContent();
                             echo "</p>";
                           echo "</div>";
                           echo "<p class='text-right'><a href='#' class='btn btn-default btn-sm'><i class='fa fa-reply'></i> reply</a></p>";
