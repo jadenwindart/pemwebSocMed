@@ -29,7 +29,6 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
             $username = mysqli_real_escape_string($db,$username);
-            echo $username;
             $prepQuery = $db->prepare("SELECT password , salt from login WHERE username=?");
             if(!$prepQuery){
                 die($db->error);
@@ -44,7 +43,6 @@
                 die($db->error);
             }
             while($prepQuery->fetch()){
-                echo "in";
                 $passInput = hash("sha256",$password.$salt);
                 if($passHash === $passInput){
                     echo "Success Login";
@@ -93,6 +91,7 @@
                 die($db->error);
             }
             $prepQuery->close();
+            echo "Register Success";
             session_destroy();
         }
     }
