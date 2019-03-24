@@ -45,7 +45,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a class="navbar-brand" href="">Home</a>
+        <a class="navbar-brand" href="index.php">Home</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -78,7 +78,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <h3 class="w3-center"><b><?php echo $user->getName(); ?></b></h3>
           <p class="w3-center"><img src="<?php echo $profPict?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar" id="profPic"></p>
           <hr>
-          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
+          <p>Description</p>
+          <p> <?php echo $user->getDescription(); if($user->getUsername() == $_SESSION['username']) echo '<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme" id="description"></i>';?></p>
           <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
           <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo $user->getBirthDate() ?></p>
         </div>
@@ -173,10 +174,16 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               <?php
               if(!empty($post)) {
                 for($i = 0; $i < sizeof($post); $i++) {
+                  if($post[$i]->getProfilePicture() == NULL){
+                    $profPict = "image/no_image.png";
+                  }
+                  else{
+                    $profPict = $post[i]->getProfilePicture();
+                  }
                   echo "<article class='row'>";
                     echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
                       echo "<figure class='thumbnail'>";
-                        echo "<img class='img-responsive' src='https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg'/>";
+                        echo "<img class='img-responsive' src='". $profPict ."'/>";
                         echo "<figcaption class='text-center'>".$post[$i]->getName()."</figcaption>";
                       echo "</figure>";
                     echo "</div>";
@@ -287,6 +294,31 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   </div>
 </div>
 
+<!-- Modal -->
+<div id="modalDesc" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form action="php/description_update.php" method="post">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Insert Your Description</h4>
+        </div>
+        <div class="modal-body">
+          <p>Insert Description Here</p>
+          <textarea name="Description" id="Description" cols="30" rows="10"></textarea>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" value="Confirm" class="btn btn-primary" name="submit">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
 </body>
 <script>
 // Accordion
@@ -318,6 +350,16 @@ $('#profPic').click(function(){
     backdrop :"false"
   });
   $('#modalPic').on('shown.bs.modal',function(e){
+    $('.modal-backdrop').remove();
+  })
+})
+
+$('#description').click(function(e){
+  $('#modalDesc').modal({
+    show : 'true',
+    backdrop :"false"
+  });
+  $('#modalDesc').on('shown.bs.modal',function(e){
     $('.modal-backdrop').remove();
   })
 })

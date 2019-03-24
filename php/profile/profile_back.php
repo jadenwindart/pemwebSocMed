@@ -77,14 +77,16 @@
     }
 
     class Post {
-        private $post_id, $username, $name, $post_content, $post_time;
+        private $post_id, $username, $name, $post_content, $post_time , $usernameFrom , $profile_picture;
 
-        public function __construct($post_id, $username, $name, $post_content, $post_time) {
+        public function __construct($post_id,$usernameFrom, $username, $name, $post_content, $post_time , $profile_picture) {
             $this->post_id = $post_id;
             $this->username = $username;
+            $this->usernameFrom = $usernameFrom;
             $this->name = $name;
             $this->post_content = $post_content;
             $this->post_time = $post_time;
+            $this->profile_picture = $profile_picture;
         }
 
 
@@ -110,6 +112,14 @@
             return $this->post_time;
         }
 
+        public function getusernameFrom(){
+            return $this->usernameFrom;
+        }
+
+        public function getProfilePicture(){
+            return $this->profile_picture;
+        }
+
         public function setPostId($post_id) {
             $this->post_id = $post_id;
         }
@@ -129,14 +139,19 @@
         public function setPostTime($post_time) {
             $this->post_time = $post_time;
         }
+
+        public function setUsernameFrom($usernameFrom){
+            $this->usernameFrom = $usernameFrom;
+        }
     }
 
 
     //Database
     include "./php/database/dbconnect.php";
 
-
-    $username = $_SESSION['username'];
+    if(!isset($_GET['id']))
+        $username = $_SESSION['username'];
+    else $username = $_GET['id'];
 
     //Get User Details
     $query = $db->prepare("SELECT username,first_name,last_name,description,profile_picture,DATE_FORMAT(birthDate,'%M %d, %Y') as 'birthDate',gender FROM user WHERE username=?;");
@@ -149,16 +164,16 @@
     $user = new User($row_user['username'], $row_user['first_name'], $row_user['last_name'], $row_user['description'], $row_user['profile_picture'],$row_user['birthDate'],$row_user['gender']);
     //var_dump($user);
     //Get Posts
-    $col = "p.post_id, u.username, u.first_name, u.last_name, p.post_content, TIMESTAMPDIFF(minute, p.post_date, NOW()) AS time_diff";
+    $col = "p.post_id, p.usernameFrom , u.username, u.first_name, u.last_name, p.post_content, TIMESTAMPDIFF(minute, p.post_date, NOW()) AS time_diff , u.profile_picture";
     $table1 = "post AS p"; $table2 = "user AS u";
-    $query = "SELECT {$col} FROM {$table1} JOIN {$table2} WHERE p.username=u.username ORDER BY 1 DESC;";
+    $query = "SELECT {$col} FROM {$table1} JOIN {$table2} ON p.usernameFrom=u.username WHERE p.username = '".$user->getUsername()."' ORDER BY 1 DESC;";
 
     $result = $db->query($query);
 
     while(($row_post = $result->fetch_assoc())) {
         $temp = $row_post['first_name']." ".$row_post['last_name'];
 
-        $post[] = new Post($row_post['post_id'], $row_post['username'], $temp, $row_post['post_content'], $row_post['time_diff']);
+        $post[] = new Post($row_post['post_id'],$row_post['usernameFrom'], $row_post['username'], $temp, $row_post['post_content'], $row_post['time_diff'] , $row_post['profile_picture']);
     }
     // var_dump($post);
 

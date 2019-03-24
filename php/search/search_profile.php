@@ -1,4 +1,5 @@
 <?php
+  session_start();
   if($user->getProfilePicture() == NULL){
     $profPict = "../../image/no_image.png";
   }
@@ -149,21 +150,21 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     
     <!-- Middle Column -->
     <div class="w3-col m7">
-      <!-- <div class="w3-row-padding">
+      <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">How's your feeling?</h6>
-              <form action="./php/profile/profile_post.php" method="post">
+              <form action="../profile/profile_post.php" method="post">
                 <input type="text" name="post_content" class="w3-input w3-border w3-padding" required><br>
-                <input type="hidden" name="username" <?php echo "value='".$user->getUsername()."'"; ?>>
+                <input type="hidden" name="username" <?php echo "value='".$_SESSION['username']."'"; ?>>
                 <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <br> -->
+      <br>
       <div class="container">
         <div class="row">
           <div class="col-md-8">
