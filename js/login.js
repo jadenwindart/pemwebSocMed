@@ -31,7 +31,6 @@ $('#login').submit(function(event){
     event.preventDefault();
     var username = $('#usernameLogin').val();
     var password = $("#passwordLogin").val();
-    alert(username);
     var data = "action=login&username=" + username +"&"+
             "password="+password ;
     $.post("php/authentication.php",data,function(response){

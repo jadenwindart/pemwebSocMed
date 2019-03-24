@@ -81,40 +81,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <div class="col-md-8">
             <h2 class="page-header"></h2>
             <section class="comment-list">
-              <!-- <article class="row">
-                <div class="col-md-2 col-sm-2 hidden-xs">
-                  <figure class="thumbnail">
-                    <img class="img-responsive" src="https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg"/>
-                    <figcaption class="text-center">Hohochin</figcaption>
-                  </figure>
-                </div>
-                <div class="col-md-10 col-sm-10">
-                  <div class="panel panel-default arrow left">
-                    <div class="panel-body">
-                      <header class="text-left">
-                        <div class="comment-user"><h4>Hohochin</h4></div>
-                      </header>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article class="row">
-                  <div class="col-md-2 col-sm-2 hidden-xs">
-                    <figure class="thumbnail">
-                      <img class="img-responsive" src="http://www.tangoflooring.ca/wp-content/uploads/2015/07/user-avatar-placeholder.png" />
-                      <figcaption class="text-center">username</figcaption>
-                    </figure>
-                  </div>
-                  <div class="col-md-10 col-sm-10">
-                    <div class="panel panel-default arrow left">
-                      <div class="panel-body">
-                        <header class="text-left">
-                          <div class="comment-user"><h4>That Guy</h4></div>
-                        </header>
-                      </div>
-                    </div>
-                  </div>
-              </article> -->
+
+              <!-- Search Result -->
 
               <?php
                 if(!empty($user)) {
@@ -150,14 +118,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     
     <!-- Right Column -->
     <div class="w3-col m2">
-      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-        <p>ADS</p>
-      </div>
-      <br>
-      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-        <p><i class="fa fa-bug w3-xxlarge"></i></p>
-      </div>
-      
+
+      &nbsp
+
     <!-- End Right Column -->
     </div>
     
