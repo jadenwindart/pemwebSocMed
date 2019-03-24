@@ -146,7 +146,7 @@
 
     $result = $db->query($query);
 
-    while($row_post = $result->fetch_assoc()) {
+    while(($row_post = $result->fetch_assoc())) {
         $temp = $row_post['first_name']." ".$row_post['last_name'];
 
         $post[] = new Post($row_post['post_id'], $row_post['username'], $temp, $row_post['post_content'], $row_post['time_diff']);
