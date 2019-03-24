@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2019 at 08:18 AM
--- Server version: 5.7.19
--- PHP Version: 7.1.20
+-- Generation Time: Mar 24, 2019 at 02:15 PM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,9 +36,6 @@ CREATE TABLE `comment` (
   `comment_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `comment`
---
 -- --------------------------------------------------------
 
 --
@@ -51,9 +48,6 @@ CREATE TABLE `login` (
   `salt` varbinary(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `login`
---
 -- --------------------------------------------------------
 
 --
@@ -63,13 +57,11 @@ CREATE TABLE `login` (
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
+  `usernameFrom` varchar(50) NOT NULL,
   `post_content` varchar(2000) NOT NULL,
   `post_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `post`
---
 -- --------------------------------------------------------
 
 --
@@ -81,12 +73,11 @@ CREATE TABLE `user` (
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
-  `profile_picture` varchar(200) DEFAULT NULL
+  `profile_picture` varchar(200) DEFAULT NULL,
+  `birthDate` date NOT NULL,
+  `gender` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `user`
---
 --
 -- Indexes for dumped tables
 --
@@ -110,7 +101,8 @@ ALTER TABLE `login`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`post_id`),
-  ADD KEY `username_post` (`username`);
+  ADD KEY `username_post` (`username`),
+  ADD KEY `username_from` (`usernameFrom`);
 
 --
 -- Indexes for table `user`
@@ -126,13 +118,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
@@ -155,6 +147,7 @@ ALTER TABLE `login`
 -- Constraints for table `post`
 --
 ALTER TABLE `post`
+  ADD CONSTRAINT `username_from` FOREIGN KEY (`usernameFrom`) REFERENCES `user` (`username`),
   ADD CONSTRAINT `username_post` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
 COMMIT;
 
