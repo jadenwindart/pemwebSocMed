@@ -240,6 +240,10 @@ span.input-group-addon i {
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
+.date {
+background-color: #fff ;
+color: #333 ;
+}
  </style>
 
 </head>
@@ -301,43 +305,19 @@ span.input-group-addon i {
 							</div>
 						</div>
 						<div class="form-group">
-                <label>Birth Date</label>
-                <div class="row">
-                  <div class="col-xs-4 col-md-4">
-                    <select name="month" class="form-control" onChange="changeDate(this.options[selectedIndex].value);">
-											<option value="na">Month</option>
-											<option value="1">January</option>
-											<option value="2">February</option>
-											<option value="3">March</option>
-											<option value="4">April</option>
-											<option value="5">May</option>
-											<option value="6">June</option>
-											<option value="7">July</option>
-											<option value="8">August</option>
-											<option value="9">September</option>
-											<option value="10">October</option>
-											<option value="11">November</option>
-											<option value="12">December</option>
-                   	 </select>
-                  </div>
-									<div class="col-xs-4 col-md-4">
-										<select name="day" id="day" class="form-control">
-											<option value="na">Day</option>
-										</select>
-                  </div>
-									<div class="col-xs-4 col-md-4">
-											<select name="year" id="year" class="form-control">
-													<option value="na">Year</option>
-											</select>
-									</div> 
-								</div>
+						<label for="datePicker" class="cols-sm-2 control-label">Birth Date</label>
+							<div class='input-group date' id='datetimepicker1'>
+							<input type='text' class="form-control" id="datePicker" name="birthDate" class="form-control" style="color:black;" data-date-end-date="0d"/>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+							</span>
 							</div>
-							<div class="form-group">
+						</div>
+						<div class="form-group">
 								<label class="radio-inline">
-									<input type="radio" name="sex" id="inlineCheckbox1" value="male"/>Male
+									<input type="radio" name="gender" id="inlineCheckbox1" value="male"/>Male
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="sex" id="inlineCheckbox2" value="female" />Female
+									<input type="radio" name="gender" id="inlineCheckbox2" value="female" />Female
 								</label>
 							</div>
 						<br>
@@ -389,5 +369,53 @@ span.input-group-addon i {
 </section>
 </body>
 <script src="js/login.js"></script>
+<script>
+	$(function () {
+   var bindDatePicker = function() {
+		$(".date").datetimepicker({
+        format:'YYYY-MM-DD',
+			icons: {
+				time: "fa fa-clock-o",
+				date: "fa fa-calendar",
+				up: "fa fa-arrow-up",
+				down: "fa fa-arrow-down"
+			}
+		}).find('#datePicker').on("blur",function () {
+			// check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+			// update the format if it's yyyy-mm-dd
+			var date = parseDate($(this).val());
+
+			if (! isValidDate(date)) {
+				//create date based on momentjs (we have that)
+				date = moment().format('YYYY-MM-DD');
+			}
+
+			$(this).val(date);
+		});
+	}
+   
+   var isValidDate = function(value, format) {
+		format = format || false;
+		// lets parse the date to the best of our knowledge
+		if (format) {
+			value = parseDate(value);
+		}
+
+		var timestamp = Date.parse(value);
+
+		return isNaN(timestamp) == false;
+   }
+   
+   var parseDate = function(value) {
+		var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+		if (m)
+			value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+		return value;
+   }
+   
+   bindDatePicker();
+ });
+</script>
 </html>
 

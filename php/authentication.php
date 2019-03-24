@@ -60,19 +60,23 @@
             $password = $_POST['password'];
             $firstName = $_POST['firstName'];
             $lastName = $_POST['lastName'];
+            $birtDate  = $_POST['birthDate'];
+            $gender = $_POST['gender'];
             $username = mysqli_real_escape_string($db,$username);
             $password = mysqli_real_escape_string($db,$password);
+            $birtDate = mysqli_real_escape_string($db,$birtDate);
+            $gender = mysqli_real_escape_string($db,$gender);
             if(strlen($password) < 8){
                 echo "Your password length must 8 or greater";
                 exit;
             }
             $salt = generateSalt();
             $passHash = hash("sha256",$password.$salt);
-            $prepQuery = $db->prepare("INSERT INTO user VALUES(?,?,?,NULL,NULL)");
+            $prepQuery = $db->prepare("INSERT INTO user VALUES(?,?,?,NULL,NULL,?,?)");
             if(!$prepQuery){
                 die($db->error);
             }
-            if(!$prepQuery->bind_param("sss",$username,$firstName,$lastName)){
+            if(!$prepQuery->bind_param("sssss",$username,$firstName,$lastName,$birtDate,$gender)){
                 die($db->error);
             }
             if(!$prepQuery->execute()){

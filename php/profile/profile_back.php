@@ -1,13 +1,15 @@
 <?php
     Class User {
-        private $username, $first_name, $last_name, $description, $profile_picture;
+        private $username, $first_name, $last_name, $description, $profile_picture,$birth_date,$gender;
 
-        public function __construct($username, $first_name, $last_name, $description, $profile_picture) {
+        public function __construct($username, $first_name, $last_name, $description, $profile_picture,$birth_date,$gender) {
             $this->username = $username;
             $this->first_name = $first_name;
             $this->last_name = $last_name;
             $this->description = $description;
             $this->profile_picture = $profile_picture;
+            $this->birth_date = $birth_date;
+            $this->gender = $gender;
         }
 
         public function __destruct() {}
@@ -37,6 +39,13 @@
             return $this->profile_picture;
         }
 
+        public function getBirthDate(){
+            return $this->birth_date;
+        }
+
+        public function getGender(){
+            return $this->gender;
+        }
 
         public function setUsername($username) {
             $this->username = $username;
@@ -56,6 +65,14 @@
 
         public function setProfilePicture($profile_picture) {
             $this->profile_picture = $profile_picture;
+        }
+
+        public function setBirthDate($birth_date){
+            $this->birth_date = $birth_date;
+        }
+
+        public function setGender($gender){
+            $this->gender = $gender;
         }
     }
 
@@ -128,17 +145,15 @@
     $username = $_SESSION['username'];
 
     //Get User Details
-    $query = $db->prepare("SELECT * FROM user WHERE username=?;");
+    $query = $db->prepare("SELECT username,first_name,last_name,description,profile_picture,DATE_FORMAT(birthDate,'%M %d, %Y') as 'birthDate',gender FROM user WHERE username=?;");
     $query->bind_param("s", $username);
     $query->execute();
 
     $result = $query->get_result();
     $row_user = $result->fetch_assoc();
     
-    $user = new User($row_user['username'], $row_user['first_name'], $row_user['last_name'], $row_user['description'], $row_user['profile_picture']);
+    $user = new User($row_user['username'], $row_user['first_name'], $row_user['last_name'], $row_user['description'], $row_user['profile_picture'],$row_user['birthDate'],$row_user['gender']);
     //var_dump($user);
-
-
     //Get Posts
     $col = "p.post_id, u.username, u.first_name, u.last_name, p.post_content, TIMESTAMPDIFF(minute, p.post_date, NOW()) AS time_diff";
     $table1 = "post AS p"; $table2 = "user AS u";
