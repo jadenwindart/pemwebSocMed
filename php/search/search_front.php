@@ -81,7 +81,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <div class="col-md-8">
             <h2 class="page-header"></h2>
             <section class="comment-list">
+
               <!-- Search Result -->
+
               <?php
                 if(!empty($user)) {
                   for($i = 0; $i < sizeof($user); $i++) {
@@ -116,7 +118,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     
     <!-- Right Column -->
     <div class="w3-col m2">
+
       &nbsp
+
     <!-- End Right Column -->
     </div>
     

@@ -55,6 +55,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   <div class="container">
     <h1 class="display-4">Social Media Gadungan</h1>
     <p class="lead">Hanyalah suatu Project UTS belaka...</p>
+
   </div>
 </div>
 
@@ -175,6 +176,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     <div class="w3-col m2">
 
       &nbsp
+
     <!-- End Right Column -->
     </div>
     
@@ -189,6 +191,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </footer>
 
 <?php
+
   function getProfilePic($path) {
     if($path == NULL){
       return "../../image/no_image.png";

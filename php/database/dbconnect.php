@@ -2,7 +2,7 @@
     $hostname = "localhost";
     $database = "uts";
     $username = "root";
-    $password = "root";
+    $password = "";
 
     $db = new mysqli($hostname,$username,$password,$database);
     if(!$db){
