@@ -49,8 +49,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#message">Message</a></li>
+          <!-- <li><a href="#profile">Profile</a></li>
+          <li><a href="#message">Message</a></li> -->
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="./php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
@@ -78,10 +78,15 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <h3 class="w3-center"><b><?php echo $user->getName(); ?></b></h3>
           <p class="w3-center"><img src="<?php echo $profPict?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar" id="profPic"></p>
           <hr>
-          <p>Description</p>
-          <p> <?php echo $user->getDescription(); if($user->getUsername() == $_SESSION['username']) echo '<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme" id="description"></i>';?></p>
-          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
+          <p>
+            <?php if($user->getUsername() == $_SESSION['username']) echo '<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme" id="description"></i>';?>
+            Add/Edit Description
+          </p>
+          <!-- <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p> -->
           <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo $user->getBirthDate() ?></p>
+          <div style="word-wrap: break-word">
+              <p><b><?php echo $user->getDescription();?></b></p>
+          </div>
         </div>
       </div>
       <br>
@@ -178,7 +183,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                     $profPict = "image/no_image.png";
                   }
                   else{
-                    $profPict = $post[i]->getProfilePicture();
+                    $profPict = $post[$i]->getProfilePicture();
                   }
                   echo "<article class='row'>";
                     echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
@@ -307,7 +312,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         </div>
         <div class="modal-body">
           <p>Insert Description Here</p>
-          <textarea name="Description" id="Description" cols="30" rows="10"></textarea>
+          <textarea name="Description" id="Description" class='w3-input w3-border' style="resize:none"></textarea>
         </div>
         <div class="modal-footer">
           <input type="submit" value="Confirm" class="btn btn-primary" name="submit">

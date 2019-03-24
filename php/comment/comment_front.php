@@ -53,8 +53,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p class="lead">TARUH GAMBAR DISINI</p>
+    <h1 class="display-4">Social Media Gadungan</h1>
+    <p class="lead">Hanyalah suatu Project UTS belaka...</p>
   </div>
 </div>
 
@@ -73,7 +73,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               <article class="row">
                 <div class="col-md-2 col-sm-2 hidden-xs">
                   <figure class="thumbnail">
-                    <img class="img-responsive" src="https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg"/>
+                    <img class="img-responsive" src="<?php echo getProfilePic($user_profpic)?>"/>
                     <figcaption class="text-center"><?php echo $name; ?></figcaption>
                   </figure>
                 </div>
@@ -111,7 +111,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                       echo "<div class='col-md-10 col-sm-10'>";
                         echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
                           echo "<figure class='thumbnail'>";
-                            echo "<img class='img-responsive' src='https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg'/>";
+                            echo "<img class='img-responsive' src='".getProfilePic($comment[$i]->getProfilePicture())."'/>";
                             echo "<figcaption class='text-center' style='font-size:80%'>".$comment[$i]->getName()."</figcaption>";
                           echo "</figure>";
                         echo "</div>";
@@ -196,6 +196,15 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </footer>
 
 <?php
+  function getProfilePic($path) {
+    if($path == NULL){
+      return "../../image/no_image.png";
+    }
+    else{
+      return "../../".$path;
+    }
+  }
+
   function timeStamp($time) {
     $temp = (int)$time;
 
