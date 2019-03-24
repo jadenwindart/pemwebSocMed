@@ -8,6 +8,10 @@
 ?>
 <!DOCTYPE html>
 <html>
+<head>
+  <link rel="icon" href="image/favicon.png" sizes="16x16" type="image/png">
+</head>
+
 <title>Profile</title>
 <meta charset="UTF-8">
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
