@@ -8,10 +8,19 @@ $('#register').submit(function(event){
     }
     var firstName = $('#firstName').val();
     var lastName = $('#lastName').val();
+    var birthDate = $('#datePicker').val();
+    var gender = $("input[name='gender']:checked").val();
+    var today = new Date();
+    if(birthDate > today){ 
+        alert("date is in future");
+        return -1;
+    }
     var data = "action=register&username=" + username + "&" +
             "password=" + password + "&" +
             "firstName=" + firstName + "&" +
-            "lastName=" + lastName;
+            "lastName=" + lastName + "&" +
+            "birthDate=" + birthDate + "&" +
+            "gender="+gender;
     $.post("php/authentication.php",data,function(response){
         alert(response);
         location.reload();

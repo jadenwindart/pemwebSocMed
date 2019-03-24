@@ -131,7 +131,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                           echo "<div class='panel-body'>";
                             echo "<header class='text-left'>";
                               echo "<div class='comment-user'>";
-                                echo "<a href='search_back.php?id=".$user[$i]->getUsername()."'><h4>".$user[$i]->getName()."</h4></a>";
+                                echo "<a href='../../index.php?id=".$user[$i]->getUsername()."'><h4>".$user[$i]->getName()."</h4></a>";
                               echo "</div>";
                             echo "</header>";
                           echo "</div>";
