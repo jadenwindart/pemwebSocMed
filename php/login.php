@@ -1,9 +1,25 @@
 <!doctype html>
 <html>
 <head>
+<!--CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+<link rel="icon" href="image/favicon.png" sizes="16x16" type="image/png"> 
+<!-- lu bisa upload ke gua kalo mau wkwk^ -->
+<!-- JavaScript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <meta charset="utf-8">
-<title>Responsive Login-Register Page</title>
-
+<title>Your Social Media</title>
 
 <?php
 	include './php/template/header.php';
@@ -12,7 +28,9 @@
 
  <style>
  html,body{
-	background-image: url('http://c1.peakpx.com/wallpaper/97/360/24/light-lights-abstract-colors-color-wallpaper.jpg');
+	background-image: url('https://blog.hdwallsource.com/wp-content/uploads/2014/11/gradients-26042-26727-hd-wallpapers.jpg');
+	background-size: auto auto
+	background-repeat: repeat
  }
 #playground-container {
     height: 500px;
@@ -240,25 +258,30 @@ span.input-group-addon i {
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
+.date {
+background-color: #fff ;
+color: #333 ;
+}
  </style>
 
 </head>
 
 <body>
+<img src="image/logo.png" height="125" width="125">
 	<section class="register-sec-bg">
 		<div class="container ">
 			<div class="row main">
             <div class="col-md-5 col-sm-5 col-xs-12">
-				<div class="main-login main-center hvr-bounce-to-bottom">
+				<div class="main-login main-center hvr-bounce-to-top">
 				<h2>Sign up</h2>
-					<form class="" method="post" action="#">
+					<form class="" method="post" action="#" id="register">
 						
 						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<label for="username" class="cols-sm-2 control-label">Username</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
 								</div>
 							</div>
 						</div>
@@ -267,14 +290,58 @@ span.input-group-addon i {
 								<label for="email" class="cols-sm-2 control-label">Password</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="password" id="password"  placeholder="Enter your password"/>
+										<span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
+										<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your password"/>
 									</div>
 								</div>
 							</div>
+							<div class="form-group">
+								<label for="cpassword" class="cols-sm-2 control-label">Confirm Your Password</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" id="cpassword"  placeholder="Confirm Your Password"/>
+								</div>
+								<label id="alert" class="cols-sm-2 control-label"></label>
+							</div>
+						</div>
+						<div class="form-group">
+								<label for="firstName" class="cols-sm-2 control-label">First Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="firstName" id="firstName"  placeholder="Enter your First Name"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+								<label for="lastName" class="cols-sm-2 control-label">Last Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="lastName" id="lastName"  placeholder="Enter your Last Name"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+						<label for="datePicker" class="cols-sm-2 control-label">Birth Date</label>
+							<div class='input-group date' id='datetimepicker1'>
+							<input type='text' class="form-control" id="datePicker" name="birthDate" class="form-control" style="color:black;" data-date-end-date="0d"/>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+							</span>
+							</div>
+						</div>
+						<div class="form-group">
+								<label class="radio-inline">
+									<input type="radio" name="gender" id="inlineCheckbox1" value="male"/>Male
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="gender" id="inlineCheckbox2" value="female" />Female
+								</label>
+							</div>
 						<br>
 						<div class="btn-block-login">
-							<a href="#" target="_blank"  class=" btn-reg">Register</a>
+							<input type="submit" value="Register" class="btn-reg">
 						</div>
 					</form>
 				</div>
@@ -286,37 +353,88 @@ span.input-group-addon i {
             <div class="col-md-5 col-sm-5 col-xs-12">
 				<div class="login-box hvr-bounce-to-top">
                 	<div class="login-box-heading">
-                    	<p>Login</p>
-                    </div>
+                    	<h2>Login</h2>
+					</div>
+					<form action="" method="post" id="login">
                     <div class="login-box-body">
                     		<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Your Email</label>
+							<label for="usernameLogin" class="cols-sm-2 control-label">Your Username</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="email" class="form-control" name="name" placeholder="Enter your Email"/>
+									<input type="text" class="form-control" id="usernameLogin" name="usernameLogin" placeholder="Enter your Username"/>
 								</div>
 							</div>
 						</div>
 
-							<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Your Password</label>
+						<div class="form-group">
+								<label for="password" class="cols-sm-2 control-label">Your Password</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="email" id="email1"  placeholder="Enter your Password"/>
+									<input type="password" class="form-control" name="passwordLogin" id="passwordLogin"  placeholder="Enter your Password"/>
 								</div>
 							</div>
 						</div>
-                        <a style="color:#fff; float:right;" href="#">Forgot Your Password?</a><br>
 						<div class="btn-block-login">
-                        	<a href="#" class="btn-login">Login</a>
+                        	<input type="submit" value="Login" class="btn-login">
                         </div>
-                    </div>
+					</div>
+					</form>
                 </div>
 			</div>
         </div>
     </div>
 </section>
 </body>
+<script src="js/login.js"></script>
+<script>
+	$(function () {
+   var bindDatePicker = function() {
+		$(".date").datetimepicker({
+        format:'YYYY-MM-DD',
+			icons: {
+				time: "fa fa-clock-o",
+				date: "fa fa-calendar",
+				up: "fa fa-arrow-up",
+				down: "fa fa-arrow-down"
+			}
+		}).find('#datePicker').on("blur",function () {
+			// check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+			// update the format if it's yyyy-mm-dd
+			var date = parseDate($(this).val());
+
+			if (! isValidDate(date)) {
+				//create date based on momentjs (we have that)
+				date = moment().format('YYYY-MM-DD');
+			}
+
+			$(this).val(date);
+		});
+	}
+   
+   var isValidDate = function(value, format) {
+		format = format || false;
+		// lets parse the date to the best of our knowledge
+		if (format) {
+			value = parseDate(value);
+		}
+
+		var timestamp = Date.parse(value);
+
+		return isNaN(timestamp) == false;
+   }
+   
+   var parseDate = function(value) {
+		var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+		if (m)
+			value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+		return value;
+   }
+   
+   bindDatePicker();
+ });
+</script>
 </html>
+
