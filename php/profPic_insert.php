@@ -42,8 +42,18 @@
     } else {
         if (move_uploaded_file($_FILES["Picture"]["tmp_name"], $target_file.".".$imageFileType)) {
             echo "The file ". basename( $_FILES["Picture"]["name"]). " has been uploaded.";
+            include "../php/database/dbconnect.php";
+            $query = "UPDATE user set profile_picture='image/".$_SESSION['username'].".".$imageFileType."' WHERE username='".$_SESSION['username']."'";
+            echo $query;
+            if(!$db->query($query)){
+                echo $db->error;
+            }
+            
+            header("Location: ../index.php");
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
+
+    
 ?>
