@@ -54,6 +54,7 @@
         public function setProfilePicture($profile_picture) {
             $this->profile_picture = $profile_picture;
         }
+
     }
 
     session_start();
@@ -90,11 +91,13 @@
         $post_content = $row_post['post_content'];
         $name = $row_post['first_name'].' '.$row_post['last_name'];
         $post_time = $row_post['time_diff'];
+
         $user_profpic = $row_post['profile_picture'];
         
 
         //Get Comment
         $col = 'c.comment_id, c.username, u.first_name, u.last_name, c.comment, TIMESTAMPDIFF(minute, c.comment_date, NOW()) AS time_diff, u.profile_picture';
+
         $table1 = 'comment AS c'; $table2 = 'user AS u';
         $query = $db->prepare("SELECT {$col} FROM {$table1} JOIN {$table2} WHERE c.post_id=? AND u.username=c.username ORDER BY 1;");
         $query->bind_param('i', $socmed_post_id);
@@ -106,6 +109,7 @@
             $temp_name = $row_comment['first_name'].' '.$row_comment['last_name'];
 
             $comment[] = new Comment($row_comment['comment_id'], $row_comment['username'], $temp_name, $row_comment['comment'], $row_comment['time_diff'], $row_comment['profile_picture']);
+
         }
         // var_dump($comment);
 

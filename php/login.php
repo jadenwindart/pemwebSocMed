@@ -1,9 +1,26 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Responsive Login-Register Page</title>
+<!--CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+<link rel="icon" href="image/favicon.png" sizes="16x16" type="image/png">
+<!-- JavaScript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
+</head>
+<meta charset="utf-8">
+<title>Your Social Media</title>
 
 <?php
 	include './php/template/header.php';
@@ -12,7 +29,7 @@
 
  <style>
  html,body{
-	background-image: url('http://c1.peakpx.com/wallpaper/97/360/24/light-lights-abstract-colors-color-wallpaper.jpg');
+	background-image: url('https://blog.hdwallsource.com/wp-content/uploads/2014/11/gradients-26042-26727-hd-wallpapers.jpg');
  }
 #playground-container {
     height: 500px;
@@ -98,16 +115,17 @@ span.input-group-addon i {
 	min-height:700px;
 }
 .btn-reg{
-	border:1px solid #fff;
-	background-color:transparent;
 	color:#fff;
+	background-color:#3EA2FF;
+	border-color:#a2ab58;
 	width:100%;
 	font-size:24px;
 	font-weight:normal;
 	text-align:center;
 	padding:15px;
 	margin-top:3%;
-			transition:all 0.5s ease;
+	text-emphasis:none;
+	transition:all 0.5s ease;
 	-webkit-transition:all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
@@ -133,7 +151,8 @@ span.input-group-addon i {
 	padding:15px;
 	margin-top:3%;
 	text-emphasis:none;
-				transition:all 0.5s ease;
+	transition:all 0.5s ease;
+
 	-webkit-transition:all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
@@ -249,11 +268,13 @@ color: #333 ;
 </head>
 
 <body>
+	<img src="image/logo.png" height="125" width="100" class="col-md-1 col-sm-1 col-xs-5">
 	<section class="register-sec-bg">
 		<div class="container ">
 			<div class="row main">
             <div class="col-md-5 col-sm-5 col-xs-12">
-				<div class="main-login main-center hvr-bounce-to-bottom">
+				<div class="main-login main-center hvr-bounce-to-top">
+
 				<h2>Sign up</h2>
 					<form class="" method="post" action="#" id="register">
 						

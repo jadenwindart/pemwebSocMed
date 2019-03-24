@@ -173,6 +173,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     
     <!-- Right Column -->
     <div class="w3-col m2">
+
       &nbsp
     <!-- End Right Column -->
     </div>

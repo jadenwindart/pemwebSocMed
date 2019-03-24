@@ -1,19 +1,14 @@
 <?php
+  session_start();
   if($user->getProfilePicture() == NULL){
-    $profPict = "image/no_image.png";
+    $profPict = "../../image/no_image.png";
   }
   else{
-    $profPict = $user->getProfilePicture();
+    $profPict = "../../".$user->getProfilePicture();
   }
 ?>
 <!DOCTYPE html>
 <html>
-
-<head>
-  <link rel="icon" href="image/favicon.png" sizes="16x16" type="image/png">
-</head>
-
-
 <title>Profile</title>
 <meta charset="UTF-8">
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +20,11 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/jquery.slim.min.js"></script>
 <script src="js/bootstrap.min.js"></script> -->
-<?php include "./php/template/header.php"; ?>
+<!-- 
+Minor Problem: 
+  - Icon glyphicon ga ke load
+-->
+<?php include "../template/header.php"; ?>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
@@ -47,13 +46,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a class="navbar-brand" href="index.php">Home</a>
+        <a class="navbar-brand" href="../../">Home</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <!-- <li><a href="#profile">Profile</a></li>
-          <li><a href="#message">Message</a></li> -->
-
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#message">Message</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="./php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
@@ -81,17 +79,72 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <h3 class="w3-center"><b><?php echo $user->getName(); ?></b></h3>
           <p class="w3-center"><img src="<?php echo $profPict?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar" id="profPic"></p>
           <hr>
-          <p>
-            <?php if($user->getUsername() == $_SESSION['username']) echo '<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme" id="description"></i>';?>
-            Add/Edit Description
-          </p>
-          <!-- <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p> -->
-          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo $user->getBirthDate() ?></p>
-          <div style="word-wrap: break-word">
-              <p><b><?php echo $user->getDescription();?></b></p>
-          </div>
+          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
+          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
         </div>
       </div>
+      <br>
+      
+      <!-- Accordion -->
+      <div class="w3-card w3-round">
+        <div class="w3-white">
+          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
+          <div id="Demo1" class="w3-hide w3-container">
+            <p>Some text..</p>
+          </div>
+          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+          <div id="Demo2" class="w3-hide w3-container">
+            <p>Some other text..</p>
+          </div>
+          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
+          <div id="Demo3" class="w3-hide w3-container">
+          <div class="w3-row-padding">
+          <br>
+            <div class="w3-half">
+              <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
+            </div>
+            <div class="w3-half">
+              <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+            </div>
+            <div class="w3-half">
+              <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
+            </div>
+            <div class="w3-half">
+              <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
+            </div>
+            <div class="w3-half">
+              <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+            </div>
+            <div class="w3-half">
+              <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
+            </div>
+          </div>
+          </div>
+        </div>      
+      </div>
+      <br>
+      
+      <!-- Interests --> 
+      <div class="w3-card w3-round w3-white w3-hide-small">
+        <div class="w3-container">
+          <p>Interests</p>
+          <p>
+            <span class="w3-tag w3-small w3-theme-d5">News</span>
+            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
+            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
+            <span class="w3-tag w3-small w3-theme-d2">Games</span>
+            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
+            <span class="w3-tag w3-small w3-theme">Games</span>
+            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
+            <span class="w3-tag w3-small w3-theme-l2">Food</span>
+            <span class="w3-tag w3-small w3-theme-l3">Design</span>
+            <span class="w3-tag w3-small w3-theme-l4">Art</span>
+            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
+          </p>
+        </div>
+      </div>
+      <br>
     <!-- End Left Column -->
     </div>
     
@@ -102,9 +155,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">How's your feeling?</h6>
-              <form action="./php/profile/profile_post.php" method="post">
+              <form action="../profile/profile_post.php" method="post">
                 <input type="text" name="post_content" class="w3-input w3-border w3-padding" required><br>
-                <input type="hidden" name="username" <?php echo "value='".$user->getUsername()."'"; ?>>
+                <input type="hidden" name="username" <?php echo "value='".$_SESSION['username']."'"; ?>>
                 <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
               </form>
             </div>
@@ -121,16 +174,10 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               <?php
               if(!empty($post)) {
                 for($i = 0; $i < sizeof($post); $i++) {
-                  if($post[$i]->getProfilePicture() == NULL){
-                    $profPict = "image/no_image.png";
-                  }
-                  else{
-                    $profPict = $post[$i]->getProfilePicture();
-                  }
                   echo "<article class='row'>";
                     echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
                       echo "<figure class='thumbnail'>";
-                        echo "<img class='img-responsive' src='". $profPict ."'/>";
+                        echo "<img class='img-responsive' src='".$profPict."'/>";
                         echo "<figcaption class='text-center'>".$post[$i]->getName()."</figcaption>";
                       echo "</figure>";
                     echo "</div>";
@@ -163,7 +210,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                               echo $post[$i]->getPostContent();
                             echo "</p>";
                           echo "</div>";
-                            echo "<form action='./php/comment/comment_back.php' method='post'>";
+                            echo "<form action='../comment/comment_back.php' method='post'>";
                               echo "<p class='text-right'>";
                                 // echo "<input type='hidden' name='visiting_username' value='".$user->getUsername()."'>";
                                 echo "<input type='hidden' name='selected_post_id' value='".$post[$i]->getPostId()."'>";
@@ -187,15 +234,13 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     <!-- Right Column -->
     <div class="w3-col m2">
       <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-        <!-- Search User -->
-        <form action='./php/search/search_back.php' method='post'>
-            <div class='w3-container'>
-              <input type='text' name='search_user' class='w3-input w3-border' placeholder='Search User' required><br>
-              <button type='submit' class='w3-button w3-theme'><i class='fa fa-search'></i> Search</button>
-            </div>
-        </form>
+        <p>ADS</p>
       </div>
-
+      <br>
+      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
+        <p><i class="fa fa-bug w3-xxlarge"></i></p>
+      </div>
+      
     <!-- End Right Column -->
     </div>
     
@@ -206,13 +251,13 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </div>
 <br>
 <footer class="text-center">
-    <!-- <p>Footer Text</p> -->
+    <p></p>
 </footer>
 <!-- Modal -->
-<div id="modalPic" class="modal fade" role="dialog" tabindex="-1">
+<!-- <div id="modalPic" class="modal fade" role="dialog" tabindex="-1">
   <div class="modal-dialog">
 
-    <!-- Modal content-->
+    Modal content
     <div class="modal-content">
       <form action="php/profPic_insert.php" method="post" enctype="multipart/form-data">
         <div class="modal-header">
@@ -231,32 +276,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     </div>
 
   </div>
-</div>
-
-<!-- Modal -->
-<div id="modalDesc" class="modal fade" role="dialog" tabindex="-1">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <form action="php/description_update.php" method="post">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Insert Your Description</h4>
-        </div>
-        <div class="modal-body">
-          <p>Insert Description Here</p>
-          <textarea name="Description" id="Description" class='w3-input w3-border' style="resize:none"></textarea>
-        </div>
-        <div class="modal-footer">
-          <input type="submit" value="Confirm" class="btn btn-primary" name="submit">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </form>
-    </div>
-
-  </div>
-</div>
+</div> -->
 
 </body>
 <script>
@@ -283,25 +303,15 @@ function openNav() {
   }
 }
 
-$('#profPic').click(function(){
-  $('#modalPic').modal({
-    show : 'true',
-    backdrop :"false"
-  });
-  $('#modalPic').on('shown.bs.modal',function(e){
-    $('.modal-backdrop').remove();
-  })
-})
-
-$('#description').click(function(e){
-  $('#modalDesc').modal({
-    show : 'true',
-    backdrop :"false"
-  });
-  $('#modalDesc').on('shown.bs.modal',function(e){
-    $('.modal-backdrop').remove();
-  })
-})
+// $('#profPic').click(function(){
+//   $('#modalPic').modal({
+//     show : 'true',
+//     backdrop :"false"
+//   });
+//   $('#modalPic').on('shown.bs.modal',function(e){
+//     $('.modal-backdrop').remove();
+//   })
+// })
 </script>
 
 <?php
