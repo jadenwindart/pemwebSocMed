@@ -1,3 +1,9 @@
+<?php
+  $profPict = glob("image/".$_SESSION['username'].".*");
+  if(!isset($profPict[0])){
+    $profPict = "image/no_image.png";
+  }
+?>
 <!DOCTYPE html>
 <html>
 <title>Profile</title>
@@ -68,7 +74,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
           <h4 class="w3-center">My Profile</h4>
-          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+          <p class="w3-center"><img src="<?php echo $profPict[0]?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar" id="profPic"></p>
           <hr>
           <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
           <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
@@ -260,6 +266,32 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <footer class="text-center">
     <p>Footer Text</p>
 </footer>
+<!-- Modal -->
+<div id="modalPic" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form action="php/profPic_insert.php" method="post" enctype="multipart/form-data">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Insert Profile Picture</h4>
+        </div>
+        <div class="modal-body">
+          <p>Insert Picture Here</p>
+          <input type="file" name="Picture" id="Picture">
+        </div>
+        <div class="modal-footer">
+          <input type="submit" value="Confirm" class="btn btn-primary" name="submit">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+</body>
 <script>
 // Accordion
 function myFunction(id) {
@@ -283,7 +315,15 @@ function openNav() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
-</script>
 
-</body>
+$('#profPic').click(function(){
+  $('#modalPic').modal({
+    show : 'true',
+    backdrop :"false"
+  });
+  $('#modalPic').on('shown.bs.modal',function(e){
+    $('.modal-backdrop').remove();
+  })
+})
+</script>
 </html> 
