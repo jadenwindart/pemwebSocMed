@@ -1,9 +1,9 @@
 <?php
   if($user->getProfilePicture() == NULL){
-    $profPict = "image/no_image.png";
+    $profPict = "../../image/no_image.png";
   }
   else{
-    $profPict = $user->getProfilePicture();
+    $profPict = "../../".$user->getProfilePicture();
   }
 ?>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
 Minor Problem: 
   - Icon glyphicon ga ke load
 -->
-<?php include "./php/template/header.php"; ?>
+<?php include "../template/header.php"; ?>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
@@ -45,7 +45,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a class="navbar-brand" href="">Home</a>
+        <a class="navbar-brand" href="../../">Home</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -80,7 +80,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <hr>
           <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
           <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo $user->getBirthDate() ?></p>
+          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
         </div>
       </div>
       <br>
@@ -149,7 +149,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     
     <!-- Middle Column -->
     <div class="w3-col m7">
-      <div class="w3-row-padding">
+      <!-- <div class="w3-row-padding">
         <div class="w3-col m12">
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
@@ -163,7 +163,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           </div>
         </div>
       </div>
-      <br>
+      <br> -->
       <div class="container">
         <div class="row">
           <div class="col-md-8">
@@ -176,7 +176,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                   echo "<article class='row'>";
                     echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
                       echo "<figure class='thumbnail'>";
-                        echo "<img class='img-responsive' src='https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg'/>";
+                        echo "<img class='img-responsive' src='".$profPict."'/>";
                         echo "<figcaption class='text-center'>".$post[$i]->getName()."</figcaption>";
                       echo "</figure>";
                     echo "</div>";
@@ -209,7 +209,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                               echo $post[$i]->getPostContent();
                             echo "</p>";
                           echo "</div>";
-                            echo "<form action='./php/comment/comment_back.php' method='post'>";
+                            echo "<form action='../comment/comment_back.php' method='post'>";
                               echo "<p class='text-right'>";
                                 // echo "<input type='hidden' name='visiting_username' value='".$user->getUsername()."'>";
                                 echo "<input type='hidden' name='selected_post_id' value='".$post[$i]->getPostId()."'>";
@@ -233,16 +233,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     <!-- Right Column -->
     <div class="w3-col m2">
       <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-        <!-- Search User -->
-        <form action='./php/search/search_back.php' method='post'>
-            <div class='w3-container'>
-              <input type='text' name='search_user' class='w3-input w3-border' placeholder='Search User' required><br>
-              <button type='submit' class='w3-button w3-theme'><i class='fa fa-search'></i> Search</button>
-            </div>
-        </form>
-      </div>
-      <br>
-      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
         <p>ADS</p>
       </div>
       <br>
@@ -260,13 +250,13 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </div>
 <br>
 <footer class="text-center">
-    <!-- <p>Footer Text</p> -->
+    <p></p>
 </footer>
 <!-- Modal -->
-<div id="modalPic" class="modal fade" role="dialog" tabindex="-1">
+<!-- <div id="modalPic" class="modal fade" role="dialog" tabindex="-1">
   <div class="modal-dialog">
 
-    <!-- Modal content-->
+    Modal content
     <div class="modal-content">
       <form action="php/profPic_insert.php" method="post" enctype="multipart/form-data">
         <div class="modal-header">
@@ -285,7 +275,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     </div>
 
   </div>
-</div>
+</div> -->
 
 </body>
 <script>
@@ -312,15 +302,15 @@ function openNav() {
   }
 }
 
-$('#profPic').click(function(){
-  $('#modalPic').modal({
-    show : 'true',
-    backdrop :"false"
-  });
-  $('#modalPic').on('shown.bs.modal',function(e){
-    $('.modal-backdrop').remove();
-  })
-})
+// $('#profPic').click(function(){
+//   $('#modalPic').modal({
+//     show : 'true',
+//     backdrop :"false"
+//   });
+//   $('#modalPic').on('shown.bs.modal',function(e){
+//     $('.modal-backdrop').remove();
+//   })
+// })
 </script>
 
 <?php

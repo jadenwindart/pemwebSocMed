@@ -1,7 +1,7 @@
 <?php
     include "../database/dbconnect.php";
 
-    if(isset($_POST)) {
+    if(!empty($_POST)) {
         $username = $_POST['username']; //var_dump($username);
         $post_content = $_POST['post_content']; //var_dump($post_content);
 

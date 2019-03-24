@@ -1,15 +1,13 @@
 <?php
     Class User {
-        private $username, $first_name, $last_name, $description, $profile_picture,$birth_date,$gender;
+        private $username, $first_name, $last_name, $description, $profile_picture;
 
-        public function __construct($username, $first_name, $last_name, $description, $profile_picture,$birth_date,$gender) {
+        public function __construct($username, $first_name, $last_name, $description, $profile_picture) {
             $this->username = $username;
             $this->first_name = $first_name;
             $this->last_name = $last_name;
             $this->description = $description;
             $this->profile_picture = $profile_picture;
-            $this->birth_date = $birth_date;
-            $this->gender = $gender;
         }
 
         public function __destruct() {}
@@ -39,13 +37,6 @@
             return $this->profile_picture;
         }
 
-        public function getBirthDate(){
-            return $this->birth_date;
-        }
-
-        public function getGender(){
-            return $this->gender;
-        }
 
         public function setUsername($username) {
             $this->username = $username;
@@ -65,14 +56,6 @@
 
         public function setProfilePicture($profile_picture) {
             $this->profile_picture = $profile_picture;
-        }
-
-        public function setBirthDate($birth_date){
-            $this->birth_date = $birth_date;
-        }
-
-        public function setGender($gender){
-            $this->gender = $gender;
         }
     }
 
@@ -131,38 +114,58 @@
         }
     }
 
-
-    //Database
-    include "./php/database/dbconnect.php";
+    include "../database/dbconnect.php";
 
 
-    $username = $_SESSION['username'];
+    if(!empty($_GET)) {
+        $username = $_GET['id']; //var_dump($username);
 
-    //Get User Details
-    $query = $db->prepare("SELECT username,first_name,last_name,description,profile_picture,DATE_FORMAT(birthDate,'%M %d, %Y') as 'birthDate',gender FROM user WHERE username=?;");
-    $query->bind_param("s", $username);
-    $query->execute();
+        //Get User Information
+        $query = $db->prepare("SELECT * FROM user WHERE username=?;");
+        $query->bind_param("s", $username);
+        $query->execute();
 
-    $result = $query->get_result();
-    $row_user = $result->fetch_assoc();
-    
-    $user = new User($row_user['username'], $row_user['first_name'], $row_user['last_name'], $row_user['description'], $row_user['profile_picture'],$row_user['birthDate'],$row_user['gender']);
-    //var_dump($user);
-    //Get Posts
-    $col = "p.post_id, u.username, u.first_name, u.last_name, p.post_content, TIMESTAMPDIFF(minute, p.post_date, NOW()) AS time_diff";
-    $table1 = "post AS p"; $table2 = "user AS u";
-    $query = "SELECT {$col} FROM {$table1} JOIN {$table2} WHERE p.username=u.username ORDER BY 1 DESC;";
+        $result = $query->get_result();
 
-    $result = $db->query($query);
+        $row = $result->fetch_assoc();
 
-    while(($row_post = $result->fetch_assoc())) {
-        $temp = $row_post['first_name']." ".$row_post['last_name'];
+        $user = new User($row['username'], $row['first_name'], $row['last_name'], $row['description'], $row['profile_picture']);
 
-        $post[] = new Post($row_post['post_id'], $row_post['username'], $temp, $row_post['post_content'], $row_post['time_diff']);
+
+        //Get User's Post
+        $col = "p.post_id, u.username, u.first_name, u.last_name, p.post_content, TIMESTAMPDIFF(minute, p.post_date, NOW()) AS time_diff";
+        $table1 = "post AS p"; $table2 = "user AS u";
+        $query = "SELECT {$col} FROM {$table1} JOIN {$table2} WHERE p.username='{$username}' AND u.username='{$username}' ORDER BY 1 DESC;"; //var_dump($query);
+        
+        $result = $db->query($query);
+
+        while($row_post = $result->fetch_assoc()) {
+            $temp = $row_post['first_name']." ".$row_post['last_name'];
+
+            $post[] = new Post ($row_post['post_id'], $row_post['username'], $temp, $row_post['post_content'], $row_post['time_diff']);
+        }
+
+        include "search_profile.php";
     }
-    // var_dump($post);
+    else if(!empty($_POST)) {
+        $username = $_POST['search_user']; var_dump($username);
 
-    $db->close();
-
-    include "profile_front.php";
+        if(!empty($username)) {
+            $query = $db->prepare("SELECT * FROM user WHERE username LIKE ?;");
+            $param = "%".$username."%";
+            $query->bind_param("s", $param);
+            $query->execute();
+    
+            $result = $query->get_result();
+            
+            while($row_search = $result->fetch_assoc()) {
+                $user[] = new User($row_search['username'], $row_search['first_name'], $row_search['last_name'], $row_search['description'], $row_search['profile_picture']);
+            }
+    
+            include "search_front.php";
+        }
+        else {
+            header("Location: ../../");
+        }
+    }
 ?>

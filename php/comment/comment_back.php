@@ -52,11 +52,11 @@
 
     //Current post & user
     if(!empty($_POST)) {
-        $_SESSION['visiting_username'] = $_POST['visiting_username'];
+        // $_SESSION['visiting_username'] = $_POST['visiting_username'];
         $_SESSION['selected_post_id'] = $_POST['selected_post_id'];
     }
 
-    $visiting_username = $_SESSION['visiting_username'];
+    $visiting_username = $_SESSION['username'];
     $socmed_post_id = $_SESSION['selected_post_id'];
 
 
