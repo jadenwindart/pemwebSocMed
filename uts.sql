@@ -1,12 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2019 at 03:15 PM
+-- Generation Time: Mar 24, 2019 at 08:18 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.20
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,14 +32,13 @@ CREATE TABLE `comment` (
   `comment_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `comment` varchar(200) NOT NULL
+  `comment` varchar(200) NOT NULL,
+  `comment_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comment`
 --
-
-
 -- --------------------------------------------------------
 
 --
@@ -56,9 +54,6 @@ CREATE TABLE `login` (
 --
 -- Dumping data for table `login`
 --
-
-
-
 -- --------------------------------------------------------
 
 --
@@ -68,16 +63,13 @@ CREATE TABLE `login` (
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `post_content` varchar(2000) NOT NULL
-
+  `post_content` varchar(2000) NOT NULL,
+  `post_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `post`
 --
-
-
-
 -- --------------------------------------------------------
 
 --
@@ -95,10 +87,6 @@ CREATE TABLE `user` (
 --
 -- Dumping data for table `user`
 --
-
-
-
-
 --
 -- Indexes for dumped tables
 --
@@ -135,18 +123,16 @@ ALTER TABLE `user`
 --
 
 --
-
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
-
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

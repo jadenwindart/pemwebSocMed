@@ -15,7 +15,7 @@
 Minor Problem: 
   - Icon glyphicon ga ke load
 -->
-<?php include 'php/template/header.php' ?>
+<?php include "./php/template/header.php"; ?>
 
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
@@ -37,7 +37,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a class="navbar-brand" href="#profilepage">Logo</a>
+        <a class="navbar-brand" href="">Home</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -45,7 +45,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <li><a href="#message">Message</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+          <li><a href="./php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
         </ul>
       </div>
     </div>
@@ -53,8 +53,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p class="lead">TARUH GAMBAR DISINI</p>
+    <h1 class="display-4">Social Media Gadungan</h1>
+    <p class="lead">Hanyalah suatu Project UTS belaka...</p>
   </div>
 </div>
 
@@ -67,8 +67,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-          <h4 class="w3-center">My Profile</h4>
-          <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+          <!-- <h4 class="w3-center">My Profile</h4> -->
+          <h3 class="w3-center"><b><?php echo $user->getName(); ?></b></h3>
+          <p class="w3-center"><img src="../image/no_image.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
           <hr>
           <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
           <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
@@ -146,8 +147,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <div class="w3-card w3-round w3-white">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">How's your feeling?</h6>
-              <p contenteditable="true" class="w3-border w3-padding"></p>
-              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+              <!-- <p contenteditable="true" class="w3-border w3-padding"></p> -->
+              <form action="./php/profile/profile_post.php" method="post">
+                <input type="text" name="post_content" class="w3-input w3-border w3-padding"><br>
+                <input type="hidden" name="username" <?php echo "value='".$user->getUsername()."'"; ?>>
+                <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
+              </form>
             </div>
           </div>
         </div>
@@ -159,7 +164,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <h2 class="page-header"></h2>
             <section class="comment-list">
               <!-- First Comment -->
-              <article class="row">
+              <!-- <article class="row">
                 <div class="col-md-2 col-sm-2 hidden-xs">
                   <figure class="thumbnail">
                     <img class="img-responsive" src="https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg"/>
@@ -182,18 +187,72 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                     </div>
                   </div>
                 </div>
-              </article>
+              </article> -->
+
+              <?php
+              if(isset($post)) {
+                for($i = 0; $i < sizeof($post); $i++) {
+                  echo "<article class='row'>";
+                    echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
+                      echo "<figure class='thumbnail'>";
+                        echo "<img class='img-responsive' src='https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg'/>";
+                        echo "<figcaption class='text-center'>".$post[$i]->getName()."</figcaption>";
+                      echo "</figure>";
+                    echo "</div>";
+                    echo "<div class='col-md-10 col-sm-10'>";
+                      echo "<div class='panel panel-default arrow left'>";
+                        echo "<div class='panel-body'>";
+                          echo "<header class='text-left'>";
+                            echo "<div class='row'>";
+                              echo "<div class='col-md-10 col-sm-10 comment-user'>";
+                                echo "<h4><b>".$post[$i]->getName()."</b></h4>";
+                              echo "</div>";
+                              echo "<div class='col-md-2 col-sm-2'>";
+                                      //Deleting post button
+                                      if($post[$i]->getUsername() == $user->getUsername()) {
+                                        echo "<form action='./php/profile/profile_post_delete.php' method='post'>";
+                                          echo "<p class='text-right'>";
+                                            echo "<button type='submit' name='button' value='".$post[$i]->getPostId()."' class='w3-btn fa fa-close' onClick='return confirm(\"Are you sure you want to delete?\")'></button>";
+                                          echo "</p>";
+                                        echo "</form>";
+                                      }
+                              echo "</div>";
+                            echo "</div>";
+                            echo "<p class='comment-date'><i class='fa fa-clock-o'></i> ";
+                                    timeStamp($post[$i]->getPostTime());
+                            echo "</p>";
+                            echo "</header>";
+                            echo "<br>";
+                          echo "<div class='comment-post'>";
+                            echo "<p>";
+                              echo $post[$i]->getPostContent();
+                            echo "</p>";
+                          echo "</div>";
+                            echo "<form action='./php/comment/comment_back.php' method='post'>";
+                              echo "<p class='text-right'>";
+                                echo "<input type='hidden' name='visiting_username' value='".$user->getUsername()."'>";
+                                echo "<input type='hidden' name='selected_post_id' value='".$post[$i]->getPostId()."'>";
+                                echo "<button type='submit' name='button' class='w3-button w3-border'><i class='fa fa-reply'></i> reply</button>";
+                              echo "</p>";
+                            echo "</form>";
+                          // echo "<p class='text-right'><a href='#' class='btn btn-default btn-sm'><i class='fa fa-reply'></i> reply</a></p>";
+                        echo "</div>";
+                      echo "</div>";
+                    echo "</div>";
+                  echo "</article>";
+                }
+              }
+              ?>
             </section>
           </div>
         </div>
       </div>
       
-      <div class="container">
+      <!-- <div class="container">
           <div class="row">
             <div class="col-md-8">
               <h2 class="page-header"></h2>
               <section class="comment-list">
-                <!-- First Comment -->
                 <article class="row">
                   <div class="col-md-2 col-sm-2 hidden-xs">
                     <figure class="thumbnail">
@@ -221,7 +280,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               </section>
             </div>
           </div>
-        </div>
+        </div> -->
       
     <!-- End Middle Column -->
     </div>
@@ -284,6 +343,29 @@ function openNav() {
   }
 }
 </script>
+
+
+<?php
+  function timeStamp($time) {
+    $temp = (int)$time;
+
+    if($temp < 1) {
+      echo "Less than a minute ago";
+    }
+    else if($temp > 1 && $temp < 60) {
+      echo $temp;
+      echo " minutes ago";
+    }
+    else if($temp >= 60 && $temp < 1440) {
+      echo round($temp / 60);
+      echo " hour ago";
+    }
+    else if($temp >= 1440) {
+      echo round($temp / 1440);
+      echo " days ago";
+    }
+  }
+?>
 
 </body>
 </html> 
