@@ -8,9 +8,11 @@
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
   <link rel="icon" href="image/favicon.png" sizes="16x16" type="image/png">
 </head>
+
 
 <title>Profile</title>
 <meta charset="UTF-8">
@@ -23,10 +25,6 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/jquery.slim.min.js"></script>
 <script src="js/bootstrap.min.js"></script> -->
-<!-- 
-Minor Problem: 
-  - Icon glyphicon ga ke load
--->
 <?php include "./php/template/header.php"; ?>
 
 <style>
@@ -53,8 +51,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#message">Message</a></li>
+          <!-- <li><a href="#profile">Profile</a></li>
+          <li><a href="#message">Message</a></li> -->
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="./php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
@@ -82,73 +81,17 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <h3 class="w3-center"><b><?php echo $user->getName(); ?></b></h3>
           <p class="w3-center"><img src="<?php echo $profPict?>" class="w3-circle" style="height:106px;width:106px" alt="Avatar" id="profPic"></p>
           <hr>
-          <p>Description</p>
-          <p> <?php echo $user->getDescription(); if($user->getUsername() == $_SESSION['username']) echo '<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme" id="description"></i>';?></p>
-          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo $user->getBirthDate() ?></p>
-        </div>
-      </div>
-      <br>
-      
-      <!-- Accordion -->
-      <div class="w3-card w3-round">
-        <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
-          <div id="Demo1" class="w3-hide w3-container">
-            <p>Some text..</p>
-          </div>
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
-          <div id="Demo2" class="w3-hide w3-container">
-            <p>Some other text..</p>
-          </div>
-          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
-          <div id="Demo3" class="w3-hide w3-container">
-          <div class="w3-row-padding">
-          <br>
-            <div class="w3-half">
-              <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
-            </div>
-            <div class="w3-half">
-              <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-            </div>
-            <div class="w3-half">
-              <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
-            </div>
-            <div class="w3-half">
-              <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
-            </div>
-            <div class="w3-half">
-              <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-            </div>
-            <div class="w3-half">
-              <img src="/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
-            </div>
-          </div>
-          </div>
-        </div>      
-      </div>
-      <br>
-      
-      <!-- Interests --> 
-      <div class="w3-card w3-round w3-white w3-hide-small">
-        <div class="w3-container">
-          <p>Interests</p>
           <p>
-            <span class="w3-tag w3-small w3-theme-d5">News</span>
-            <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
-            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-            <span class="w3-tag w3-small w3-theme-d2">Games</span>
-            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
-            <span class="w3-tag w3-small w3-theme">Games</span>
-            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
-            <span class="w3-tag w3-small w3-theme-l2">Food</span>
-            <span class="w3-tag w3-small w3-theme-l3">Design</span>
-            <span class="w3-tag w3-small w3-theme-l4">Art</span>
-            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
+            <?php if($user->getUsername() == $_SESSION['username']) echo '<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme" id="description"></i>';?>
+            Add/Edit Description
           </p>
+          <!-- <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p> -->
+          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo $user->getBirthDate() ?></p>
+          <div style="word-wrap: break-word">
+              <p><b><?php echo $user->getDescription();?></b></p>
+          </div>
         </div>
       </div>
-      <br>
     <!-- End Left Column -->
     </div>
     
@@ -182,7 +125,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                     $profPict = "image/no_image.png";
                   }
                   else{
-                    $profPict = $post[i]->getProfilePicture();
+                    $profPict = $post[$i]->getProfilePicture();
                   }
                   echo "<article class='row'>";
                     echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
@@ -252,15 +195,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             </div>
         </form>
       </div>
-      <br>
-      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-        <p>ADS</p>
-      </div>
-      <br>
-      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-        <p><i class="fa fa-bug w3-xxlarge"></i></p>
-      </div>
-      
+
     <!-- End Right Column -->
     </div>
     
@@ -311,7 +246,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         </div>
         <div class="modal-body">
           <p>Insert Description Here</p>
-          <textarea name="Description" id="Description" cols="30" rows="10"></textarea>
+          <textarea name="Description" id="Description" class='w3-input w3-border' style="resize:none"></textarea>
         </div>
         <div class="modal-footer">
           <input type="submit" value="Confirm" class="btn btn-primary" name="submit">

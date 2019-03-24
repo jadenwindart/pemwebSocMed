@@ -152,6 +152,7 @@ span.input-group-addon i {
 	margin-top:3%;
 	text-emphasis:none;
 	transition:all 0.5s ease;
+
 	-webkit-transition:all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
@@ -273,6 +274,7 @@ color: #333 ;
 			<div class="row main">
             <div class="col-md-5 col-sm-5 col-xs-12">
 				<div class="main-login main-center hvr-bounce-to-top">
+
 				<h2>Sign up</h2>
 					<form class="" method="post" action="#" id="register">
 						
