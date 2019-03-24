@@ -1,7 +1,7 @@
 <?php
     include "../database/dbconnect.php";
 
-    if(isset($_POST)) {
+    if(!empty($_POST)) {
         $post_id = $_POST['button']; var_dump($post_id);
        
         //Delete Comment related to Post

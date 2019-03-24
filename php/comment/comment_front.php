@@ -11,10 +11,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/jquery.slim.min.js"></script>
 <script src="js/bootstrap.min.js"></script> -->
-<!-- 
-Minor Problem: 
-  - Icon glyphicon ga ke load
--->
+
 <?php 
   // include './php/template/header.php';
   include '../template/header.php';  
@@ -77,7 +74,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                 <div class="col-md-2 col-sm-2 hidden-xs">
                   <figure class="thumbnail">
                     <img class="img-responsive" src="https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg"/>
-                    <!-- <figcaption class="text-center">Hohochin</figcaption> -->
                     <figcaption class="text-center"><?php echo $name; ?></figcaption>
                   </figure>
                 </div>
@@ -85,7 +81,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                   <div class="panel panel-default arrow left">
                     <div class="panel-body">
                       <header class="text-left">
-                        <!-- <div class="comment-user"><p style='font-size:200%'><b>Hohochin</b></p></div> -->
                         <div class="comment-user"><p style='font-size:200%'><b><?php echo $name; ?></b></p></div>
                         <p><i class="fa fa-clock-o"></i> 
                           <?php
@@ -95,7 +90,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                       </header>
                       <br>
                       <div class="comment-post">
-                        <!-- <p style='font-size:120%'>Ayy Comrade, Please accept my guulag</p> -->
                         <p style='font-size:120%'><?php echo $post_content; ?></p>
                       </div>
                     </div>
@@ -109,42 +103,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                 </div>
               </article>
               <!-- Replies -->
-              <!-- <article class='row'>
-                <div class='col-md-2 col-sm-2'>&nbsp</div>
-                <div class='col-md-10 col-sm-10'>
-                  <div class="col-md-2 col-sm-2 hidden-xs">
-                    <figure class="thumbnail">
-                      <img class="img-responsive" src="https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg"/>
-                      <figcaption class="text-center" style='font-size:80%'>Hohochin</figcaption>
-                    </figure>
-                  </div>
-                  <div class="col-md-10 col-sm-10">
-                    <div class="panel panel-default arrow left">
-                      <div class="panel-body">
-                        <header class="text-left">
-                          <div class="row">
-                            <div class="col-md-10 col-sm-10 comment-user"><p style="font-size:120%"><b>Hohochin</b></p></div>
-                            <div class="col-md-2 col-sm-2">
-                              <form action="">
-                                <p class='text-right'>
-                                  <button type="submit" name="button" value="" class="w3-btn fa fa-close" onClick="return confirm('Are you sure you want to delete?')"></button>
-                                </p>
-                              </form>
-                            </div>
-                          </div>
-                          <p style='font-size:90%'><i class="fa fa-clock-o"></i> Dec 16, 2014</p>
-                        </header>
-                        <br>
-                        <div class="comment-post">
-                          <p>Nayy Comrade</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article> -->
               <?php
-                if(isset($comment)) {
+                if(!empty($comment)) {
                   for($i = 0; $i < sizeof($comment); $i++) {
                     echo "<article class='row'>";
                       echo "<div class='col-md-2 col-sm-2'>&nbsp</div>";
@@ -213,17 +173,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     
     <!-- Right Column -->
     <div class="w3-col m2">
-      <!-- <div class="w3-card w3-round w3-white w3-center">
-        <div class="w3-container">
-          <p>Upcoming Events:</p>
-          <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
-          <p><strong>Holiday</strong></p>
-          <p>Friday 15:00</p>
-          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
-        </div>
-      </div> -->
-      <br>
-      
       <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
         <p>ADS</p>
       </div>
