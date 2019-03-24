@@ -40,7 +40,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a class="navbar-brand" href="#profilepage">Logo</a>
+        <a class="navbar-brand" href="../../">Home</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -48,7 +48,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <li><a href="#message">Message</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+          <li><a href="../logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
         </ul>
       </div>
     </div>
@@ -89,23 +89,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                         <div class="comment-user"><p style='font-size:200%'><b><?php echo $name; ?></b></p></div>
                         <p><i class="fa fa-clock-o"></i> 
                           <?php
-                            $time = (int)$post_time;      
-                                      
-                            if($time < 1) {
-                              echo "Less than a minute ago";
-                            }
-                            else if($time > 1 && $time < 60) {
-                              echo $time;
-                              echo " minutes ago";
-                            }
-                            else if($time >= 60 && $time < 1440) {
-                              echo round($time / 60);
-                              echo " hour ago";
-                            }
-                            else if($time >= 1440) {
-                              echo round($time / 1440);
-                              echo " days ago";
-                          }
+                            timeStamp($post_time);
                           ?>
                         </p>
                       </header>
@@ -168,7 +152,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                         echo "<div class='col-md-2 col-sm-2 hidden-xs'>";
                           echo "<figure class='thumbnail'>";
                             echo "<img class='img-responsive' src='https://www.themebeta.com/files/picture/201601/18/78ae73519371a3c6ccffd86d5f33e60f.jpeg'/>";
-                            echo "<figcaption class='text-center' style='font-size:80%'>".$comment[$i]->getUsername()."</figcaption>";
+                            echo "<figcaption class='text-center' style='font-size:80%'>".$comment[$i]->getName()."</figcaption>";
                           echo "</figure>";
                         echo "</div>";
                         echo "<div class='col-md-10 col-sm-10'>";
@@ -176,33 +160,20 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                             echo "<div class='panel-body'>";
                               echo "<header class='text-left'>";
                                 echo "<div class='row'>";
-                                  echo "<div class='col-md-10 col-sm-10 comment-user'><p style='font-size:120%'><b>".$comment[$i]->getUsername()."</b></p></div>";
+                                  echo "<div class='col-md-10 col-sm-10 comment-user'><p style='font-size:120%'><b>".$comment[$i]->getName()."</b></p></div>";
                                   echo "<div class='col-md-2 col-sm-2'>";
-                                      echo "<form action='comment_delete.php' method='post'>";
-                                        echo "<p class='text-right'>";
-                                        echo "<button type='submit' name='button' value='".$comment[$i]->getId()."' class='w3-btn fa fa-close' onClick='return confirm(\"Are you sure you want to delete?\")'></button>";
-                                        echo "</p>";
-                                      echo "</form>";
+                                      //Deleting comment button
+                                      if($visiting_username == $comment[$i]->getUsername()) {
+                                        echo "<form action='comment_delete.php' method='post'>";
+                                          echo "<p class='text-right'>";
+                                            echo "<button type='submit' name='button' value='".$comment[$i]->getId()."' class='w3-btn fa fa-close' onClick='return confirm(\"Are you sure you want to delete?\")'></button>";
+                                          echo "</p>";
+                                        echo "</form>";
+                                      }
                                   echo "</div>";
                                 echo "</div>";
                                 echo "<p style='font-size:90%'><i class='fa fa-clock-o'></i> ";
-                                  $comment_time = (int)$comment[$i]->getCommentTime();  
-                                  
-                                  if($comment_time < 1) {
-                                    echo "Less than a minute ago";
-                                  }
-                                  else if($comment_time > 1 && $comment_time < 60) {
-                                    echo $comment_time;
-                                    echo " minutes ago";
-                                  }
-                                  else if($comment_time >= 60 && $comment_time < 1440) {
-                                    echo round($comment_time / 60);
-                                    echo " hour ago";
-                                  }
-                                  else if($comment_time >= 1440) {
-                                    echo round($comment_time / 1440);
-                                    echo " days ago";
-                                  }
+                                  timeStamp($comment[$i]->getCommentTime());
                                 echo "</p>";
                               echo "</header>";
                               echo "<br>";
@@ -274,6 +245,29 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <footer class="text-center">
     <!-- <p>Footer Text</p> -->
 </footer>
+
+
+<?php
+  function timeStamp($time) {
+    $temp = (int)$time;
+
+    if($temp < 1) {
+      echo "Less than a minute ago";
+    }
+    else if($temp > 1 && $temp < 60) {
+      echo $temp;
+      echo " minutes ago";
+    }
+    else if($temp >= 60 && $temp < 1440) {
+      echo round($temp / 60);
+      echo " hour ago";
+    }
+    else if($temp >= 1440) {
+      echo round($temp / 1440);
+      echo " days ago";
+    }
+  }
+?>
 
 </body>
 </html> 

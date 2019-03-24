@@ -37,7 +37,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a class="navbar-brand" href="#profilepage">Logo</a>
+        <a class="navbar-brand" href="">Home</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -45,7 +45,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <li><a href="#message">Message</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+          <li><a href="./php/logout.php"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
         </ul>
       </div>
     </div>
@@ -53,8 +53,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p class="lead">TARUH GAMBAR DISINI</p>
+    <h1 class="display-4">Social Media Gadungan</h1>
+    <p class="lead">Hanyalah suatu Project UTS belaka...</p>
   </div>
 </div>
 
@@ -68,7 +68,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
           <!-- <h4 class="w3-center">My Profile</h4> -->
-          <h4 class="w3-center"><?php echo $user->getName(); ?></h4>
+          <h3 class="w3-center"><b><?php echo $user->getName(); ?></b></h3>
           <p class="w3-center"><img src="../image/no_image.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
           <hr>
           <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
@@ -208,6 +208,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                                 echo "<h4><b>".$post[$i]->getName()."</b></h4>";
                               echo "</div>";
                               echo "<div class='col-md-2 col-sm-2'>";
+                                      //Deleting post button
                                       if($post[$i]->getUsername() == $user->getUsername()) {
                                         echo "<form action='./php/profile/profile_post_delete.php' method='post'>";
                                           echo "<p class='text-right'>";
@@ -218,23 +219,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                               echo "</div>";
                             echo "</div>";
                             echo "<p class='comment-date'><i class='fa fa-clock-o'></i> ";
-                                    $post_time = (int)$post[$i]->getPostTime();      
-                                    // echo $post_time;
-                                    if($post_time < 1) {
-                                      echo "Less than a minute ago";
-                                    }
-                                    else if($post_time > 1 && $post_time < 60) {
-                                      echo $post_time;
-                                      echo " minutes ago";
-                                    }
-                                    else if($post_time >= 60 && $post_time < 1440) {
-                                      echo round($post_time / 60);
-                                      echo " hour ago";
-                                    }
-                                    else if($post_time >= 1440) {
-                                      echo round($post_time / 1440);
-                                      echo " days ago";
-                                    }
+                                    timeStamp($post[$i]->getPostTime());
                             echo "</p>";
                             echo "</header>";
                             echo "<br>";
@@ -243,7 +228,14 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                               echo $post[$i]->getPostContent();
                             echo "</p>";
                           echo "</div>";
-                          echo "<p class='text-right'><a href='#' class='btn btn-default btn-sm'><i class='fa fa-reply'></i> reply</a></p>";
+                            echo "<form action='./php/comment/comment_back.php' method='post'>";
+                              echo "<p class='text-right'>";
+                                echo "<input type='hidden' name='visiting_username' value='".$user->getUsername()."'>";
+                                echo "<input type='hidden' name='selected_post_id' value='".$post[$i]->getPostId()."'>";
+                                echo "<button type='submit' name='button' class='w3-button w3-border'><i class='fa fa-reply'></i> reply</button>";
+                              echo "</p>";
+                            echo "</form>";
+                          // echo "<p class='text-right'><a href='#' class='btn btn-default btn-sm'><i class='fa fa-reply'></i> reply</a></p>";
                         echo "</div>";
                       echo "</div>";
                     echo "</div>";
@@ -351,6 +343,29 @@ function openNav() {
   }
 }
 </script>
+
+
+<?php
+  function timeStamp($time) {
+    $temp = (int)$time;
+
+    if($temp < 1) {
+      echo "Less than a minute ago";
+    }
+    else if($temp > 1 && $temp < 60) {
+      echo $temp;
+      echo " minutes ago";
+    }
+    else if($temp >= 60 && $temp < 1440) {
+      echo round($temp / 60);
+      echo " hour ago";
+    }
+    else if($temp >= 1440) {
+      echo round($temp / 1440);
+      echo " days ago";
+    }
+  }
+?>
 
 </body>
 </html> 
