@@ -80,7 +80,7 @@
         //Get Post
         $col = 'u.first_name, u.last_name, post_content, TIMESTAMPDIFF(minute, p.post_date, NOW()) AS time_diff, u.profile_picture';
         $table1 = 'post AS p'; $table2 = 'user AS u';
-        $query = $db->prepare("SELECT {$col} FROM {$table1} JOIN {$table2} WHERE p.post_id=? AND p.username=u.username;");
+        $query = $db->prepare("SELECT {$col} FROM {$table1} JOIN {$table2} ON p.usernameFrom=u.username WHERE p.post_id=?;");
         $query->bind_param('i', $socmed_post_id);
         $query->execute();
         
