@@ -300,6 +300,46 @@ span.input-group-addon i {
 								</div>
 							</div>
 						</div>
+						<div class="form-group">
+                <label>Birth Date</label>
+                <div class="row">
+                  <div class="col-xs-4 col-md-4">
+                    <select name="month" class="form-control" onChange="changeDate(this.options[selectedIndex].value);">
+											<option value="na">Month</option>
+											<option value="1">January</option>
+											<option value="2">February</option>
+											<option value="3">March</option>
+											<option value="4">April</option>
+											<option value="5">May</option>
+											<option value="6">June</option>
+											<option value="7">July</option>
+											<option value="8">August</option>
+											<option value="9">September</option>
+											<option value="10">October</option>
+											<option value="11">November</option>
+											<option value="12">December</option>
+                   	 </select>
+                  </div>
+									<div class="col-xs-4 col-md-4">
+										<select name="day" id="day" class="form-control">
+											<option value="na">Day</option>
+										</select>
+                  </div>
+									<div class="col-xs-4 col-md-4">
+											<select name="year" id="year" class="form-control">
+													<option value="na">Year</option>
+											</select>
+									</div> 
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="radio-inline">
+									<input type="radio" name="sex" id="inlineCheckbox1" value="male"/>Male
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="sex" id="inlineCheckbox2" value="female" />Female
+								</label>
+							</div>
 						<br>
 						<div class="btn-block-login">
 							<input type="submit" value="Register" class="btn-reg">
